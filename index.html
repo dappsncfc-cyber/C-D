@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cromer and District Independent Funeral Services | 32 West Street, Cromer</title>
+  <meta name="description" content="A compassionate and caring 24-hour funeral service in Cromer and North Norfolk. Wholly independent funeral directors with over 78 years of combined experience." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-deep: #0b1520;
+      --bg-mid: #112233;
+      --bg-soft: #172d42;
+      --glass-bg: rgba(255, 255, 255, 0.065);
+      --glass-bg-hover: rgba(255, 255, 255, 0.11);
+      --glass-bg-strong: rgba(17, 34, 51, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.14);
+      --glass-border-highlight: rgba(212, 184, 134, 0.45);
+      --text-main: #f4f6f8;
+      --text-muted: #b8c6d4;
+      --accent-gold: #d4b886;
+      --accent-gold-light: #ebdcc0;
+      --accent-sky: #7eb2dd;
+      --shadow-glass: 0 12px 40px 0 rgba(4, 10, 18, 0.45);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Coastal Norfolk Background Orbs */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 12% 18%, rgba(78, 126, 168, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 85% 22%, rgba(212, 184, 134, 0.14) 0%, transparent 42%),
+        radial-gradient(circle at 50% 80%, rgba(45, 92, 128, 0.25) 0%, transparent 55%),
+        linear-gradient(160deg, #09131d 0%, #102132 50%, #0b1724 100%);
+      pointer-events: none;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1.22;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Top 24/7 Emergency Bar */
+    .top-bar {
+      background: rgba(8, 16, 26, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+      font-size: 0.85rem;
+      padding: 0.55rem 0;
+      color: var(--text-muted);
+    }
+
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .top-bar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-gold-light);
+      font-weight: 500;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(1.2); }
+    }
+
+    .top-bar-contacts {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .top-bar-contacts a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* Glassmorphic Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--glass-bg-strong);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      cursor: pointer;
+    }
+
+    .brand-crest {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(212, 184, 134, 0.25), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--glass-border-highlight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--accent-gold);
+      box-shadow: inset 0 0 12px rgba(212, 184, 134, 0.15);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-gold);
+      margin-top: 2px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 0.55rem 0.85rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.9rem;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    nav.primary-nav {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 0.35rem 0;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-link.active {
+      color: var(--accent-gold-light);
+      background: rgba(212, 184, 134, 0.15);
+      border: 1px solid rgba(212, 184, 134, 0.35);
+    }
+
+    /* Glassmorphic Components */
+    .glass-tile {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-glass);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-tile::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+      pointer-events: none;
+    }
+
+    .glass-tile.interactive:hover {
+      transform: translateY(-4px);
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-highlight);
+    }
+
+    .glass-tile.featured {
+      border-color: var(--glass-border-highlight);
+      background: linear-gradient(145deg, rgba(212, 184, 134, 0.11), rgba(255, 255, 255, 0.04));
+    }
+
+    /* Page View Switching */
+    .page-section {
+      display: none;
+      padding: 3rem 0 4.5rem;
+      animation: fadeIn 0.38s ease-out;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Layout Utilities */
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-gold);
+      margin-bottom: 0.65rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .section-subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      max-width: 740px;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d4b886 0%, #b8975e 100%);
+      color: #09131d;
+      box-shadow: 0 4px 16px rgba(212, 184, 134, 0.25);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border-color: var(--glass-border);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-gold);
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      padding: 3.5rem 2.75rem;
+      border-radius: 26px;
+      background: 
+        linear-gradient(125deg, rgba(11, 23, 36, 0.88) 0%, rgba(19, 39, 58, 0.72) 100%),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      border: 1px solid var(--glass-border-highlight);
+      box-shadow: var(--shadow-glass);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 3.7rem);
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+    }
+
+    .hero-lead {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* Package & Product Cards */
+    .price-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      margin: 0.75rem 0;
+      display: block;
+    }
+
+    .price-sub {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1.25rem 0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.65rem;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+
+    .feature-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold);
+      font-size: 0.8rem;
+      top: 2px;
+    }
+
+    /* Filter Pills */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: rgba(212, 184, 134, 0.2);
+      color: var(--accent-gold-light);
+      border-color: var(--accent-gold);
+    }
+
+    /* Tables */
+    .glass-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border);
+      background: rgba(9, 18, 28, 0.5);
+    }
+
+    table.glass-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    table.glass-table th,
+    table.glass-table td {
+      padding: 0.95rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    table.glass-table th {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent-gold-light);
+      font-weight: 600;
+    }
+
+    table.glass-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    /* Team Avatar */
+    .avatar-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212, 184, 134, 0.3), rgba(126, 178, 221, 0.2));
+      border: 1px solid var(--glass-border-highlight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      margin-bottom: 1rem;
+    }
+
+    /* Badge Pill */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      background: rgba(212, 184, 134, 0.16);
+      color: var(--accent-gold-light);
+      border: 1px solid rgba(212, 184, 134, 0.3);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(7, 14, 22, 0.9);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      padding: 4rem 0 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .accreditation-badges {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .accred-pill {
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-gold-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 960px) {
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      nav.primary-nav {
+        display: none;
+      }
+      nav.primary-nav.open {
+        display: block;
+      }
+      .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.5rem 0;
+      }
+      .hero-card {
+        padding: 2.25rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-bg"></div>
+
+  <!-- 24/7 Availability Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span class="pulse-dot"></span>
+        <span>Available 24 hours a day, 365 days a year — Wholly Independent Funeral Directors</span>
+      </div>
+      <div class="top-bar-contacts">
+        <span>📍 32 West Street, Cromer, NR27 9DS</span>
+        <a href="tel:01263514814">📞 01263 514814</a>
+        <a href="tel:07733378109">📱 07733 378109</a>
+        <a href="mailto:info@cromeranddistrictfunerals.co.uk">✉️ info@cromeranddistrictfunerals.co.uk</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Glassmorphic Sticky Header -->
+  <header>
+    <div class="container">
+      <div class="header-main">
+        <a href="#home" class="brand" onclick="navigateTo('home')">
+          <div class="brand-crest">C&amp;D</div>
+          <div class="brand-text">
+            <h1>Cromer &amp; District</h1>
+            <span>Independent Funeral Services Ltd</span>
+          </div>
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <a href="tel:01263514814" class="btn btn-primary" style="padding: 0.55rem 1.1rem; font-size: 0.85rem;">
+            Call 01263 514814
+          </a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+            ☰ Menu
+          </button>
+        </div>
+      </div>
+
+      <nav class="primary-nav" id="primaryNav">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+          <li><a href="#about" class="nav-link" data-page="about">About Us</a></li>
+          <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+          <li><a href="#packages" class="nav-link" data-page="packages">Funeral Packages &amp; Costs</a></li>
+          <li><a href="#plans" class="nav-link" data-page="plans">Funeral Plans</a></li>
+          <li><a href="#caskets" class="nav-link" data-page="caskets">Caskets &amp; Urns</a></li>
+          <li><a href="#coffins" class="nav-link" data-page="coffins">Coffins</a></li>
+          <li><a href="#notices" class="nav-link" data-page="notices">Funeral Notices &amp; Donations</a></li>
+          <li><a href="#team" class="nav-link" data-page="team">The Team</a></li>
+          <li><a href="#support" class="nav-link" data-page="support">Help &amp; Support</a></li>
+          <li><a href="#contact" class="nav-link" data-page="contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ==================== 1. HOME PAGE ==================== -->
+    <section id="page-home" class="page-section active">
+      <div class="hero-card">
+        <div class="hero-content">
+          <span class="eyebrow">Cromer &amp; North Norfolk • Est. Independent Care</span>
+          <h2 class="hero-title">A compassionate and caring service in your time of need.</h2>
+          <p class="hero-lead">
+            Cromer and District offer a complete funeral service to Cromer and North Norfolk with the assurance of being wholly independent. Between us, we have offered over <strong>78 years of experience, sympathy and care</strong> to our clients. This has enabled Adrian Amis and the team to meet any requests you or your family may have.
+          </p>
+          <p class="hero-lead" style="margin-bottom: 0;">
+            Whether you wish to visit our office in West Street, Cromer or would like us to visit you in the comfort of your own home, we offer a sympathetic, discreet and efficient service to everyone, while maintaining competitive prices.
+          </p>
+          <div class="hero-actions">
+            <a href="#packages" class="btn btn-primary">View Funeral Packages &amp; Costs</a>
+            <a href="#contact" class="btn btn-glass">Speak With Adrian &amp; The Team</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Quick-Access Glass Tiles -->
+      <div style="margin-bottom: 3rem;">
+        <span class="eyebrow">Our Services</span>
+        <h3 class="section-title">How We Can Help Your Family</h3>
+        <div class="grid-3">
+          <div class="glass-tile interactive" onclick="navigateTo('packages')" style="cursor:pointer;">
+            <span class="badge">Transparent Pricing</span>
+            <h4 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Funeral Packages</h4>
+            <p style="color: var(--text-muted); font-size: 0.94rem; margin-bottom: 1.25rem;">
+              From Direct Unattended Cremations (£1,450) and Early/Late Cremations (£2,800) to Standard, Traditional, Cedar Hall, and Horse-Drawn services—all inclusive of disbursements.
+            </p>
+            <span style="color: var(--accent-gold); font-size: 0.88rem; font-weight: 600;">Explore Packages →</span>
+          </div>
+
+          <div class="glass-tile interactive" onclick="navigateTo('coffins')" style="cursor:pointer;">
+            <span class="badge">Craftsmanship</span>
+            <h4 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Coffins</h4>
+            <p style="color: var(--text-muted); font-size: 0.94rem; margin-bottom: 1.25rem;">
+              A thoughtful selection of traditional oak and elm veneer, solid timber, eco-friendly willow, seagrass and bamboo, and bespoke picture coffins tailored to your loved one.
+            </p>
+            <span style="color: var(--accent-gold); font-size: 0.88rem; font-weight: 600;">View Coffin Range →</span>
+          </div>
+
+          <div class="glass-tile interactive" onclick="navigateTo('caskets')" style="cursor:pointer;">
+            <span class="badge">Keepsakes &amp; Ashes</span>
+            <h4 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Caskets, Urns &amp; Scatter Tubes</h4>
+            <p style="color: var(--text-muted); font-size: 0.94rem; margin-bottom: 1.25rem;">
+              Solid oak caskets, natural willow and seagrass ashes caskets, decorative metal urns, and scatter tubes starting from £20.00.
+            </p>
+            <span style="color: var(--accent-gold); font-size: 0.88rem; font-weight: 600;">Browse Catalogue →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Planning Ahead & Memorial Jewellery -->
+      <div class="grid-2" style="margin-bottom: 3rem;">
+        <div class="glass-tile featured">
+          <span class="eyebrow">Planning Ahead</span>
+          <h3 style="font-size: 1.85rem; margin-bottom: 0.85rem;">Pre-Paid Funeral Plans</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            Talking about death and funerals isn't easy. And yet there are several very good reasons why having a funeral plan in place makes perfect sense – from an emotional, practical and financial point of view. From a traditional funeral to something simpler, with a plan in place you can make sure you get the send-off you really want.
+          </p>
+          <a href="#plans" class="btn btn-primary">Learn About Funeral Plans</a>
+        </div>
+
+        <div class="glass-tile">
+          <span class="eyebrow">EverWith Accredited Partner</span>
+          <h3 style="font-size: 1.85rem; margin-bottom: 0.85rem;">Memorial Jewellery</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            We partner with <strong>EverWith Memorial Jewellery</strong> to help you keep a treasured memory close. A small token of cremation ashes or hair can be lovingly encapsulated into hallmarked 9ct gold or 925 sterling silver rings, pendants, lockets, cufflinks, and charms.
+          </p>
+          <a href="#services" class="btn btn-glass">Explore Memorial Jewellery</a>
+        </div>
+      </div>
+
+      <!-- What Families Say -->
+      <div>
+        <span class="eyebrow">Verified Reviews</span>
+        <h3 class="section-title">What Local Families Say</h3>
+        <div class="grid-3">
+          <div class="glass-tile">
+            <p style="font-style: italic; color: var(--text-main); margin-bottom: 1rem;">
+              "From the initial contact we had with Cromer and District Independent Funeral Services to ask advice prior to my dad's passing through to the funeral, Adrian was professional, respectful and compassionate throughout. He offered guidance and support at an extremely difficult time."
+            </p>
+            <strong style="color: var(--accent-gold);">— P. Heath</strong>
+          </div>
+          <div class="glass-tile">
+            <p style="font-style: italic; color: var(--text-main); margin-bottom: 1rem;">
+              "Every thing done with precision and care and a very personal and friendly attitude. They could not have been more caring, compassionate and efficient. They made the day so much easier for us."
+            </p>
+            <strong style="color: var(--accent-gold);">— James Porter &amp; Carol Piercy</strong>
+          </div>
+          <div class="glass-tile">
+            <p style="font-style: italic; color: var(--text-main); margin-bottom: 1rem;">
+              "From the very beginning, everything was handled with dignity and respect, which helped ease the burden on our family during such a difficult time. Thank you for helping us give our grandad the farewell he deserved."
+            </p>
+            <strong style="color: var(--accent-gold);">— Jordan Kemp</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. ABOUT US PAGE ==================== -->
+    <section id="page-about" class="page-section">
+      <span class="eyebrow">Wholly Independent • 32 West Street, Cromer</span>
+      <h2 class="section-title">About Cromer and District Independent Funerals</h2>
+      <p class="section-subtitle">
+        Over 78 years of combined experience serving families across Cromer, Sheringham, Holt, Aylsham, North Walsham, and the wider North Norfolk community.
+      </p>
+
+      <div class="grid-2" style="margin-bottom: 2.5rem;">
+        <div class="glass-tile">
+          <h3 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent-gold-light);">Our Heritage &amp; Ethos</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Cromer and District Independent Funeral Services LTD (Company No. 08334736) is led by owner and Funeral Director <strong>Adrian Amis</strong>. Unlike national corporate chains, we are wholly independent, ensuring every family receives personal, unhurried, and heartfelt care tailored to their exact wishes.
+          </p>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Between our dedicated team members, we bring together more than 78 years of experience in funeral directing, bereavement care, hospitality, and NHS service. Nothing is ever too much trouble—whether sourcing a particular celebrant, arranging a bespoke route through Cromer, or simply offering a quiet cup of tea and a listening ear.
+          </p>
+          <p style="color: var(--text-muted);">
+            We remain on call 24 hours a day, 365 days a year. You can visit our welcoming offices at <strong>32 West Street, Cromer</strong>, or we can visit you in the comfort and privacy of your own home at no extra charge.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <h3 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent-gold-light);">Our Premises &amp; Standards</h3>
+          <ul class="feature-list">
+            <li><strong>Private Chapel of Rest:</strong> Located at 32 West Street, Cromer, providing a peaceful sanctuary where family and friends can spend quiet time saying their final goodbyes.</li>
+            <li><strong>Private Arrangement Rooms:</strong> Discuss every aspect of the service in complete comfort and confidence.</li>
+            <li><strong>Home Visits Available:</strong> We are always happy to travel to your home across Cromer and North Norfolk.</li>
+            <li><strong>NAFD &amp; SAIF Members:</strong> Proud members of both the National Association of Funeral Directors (NAFD) and the National Society of Allied and Independent Funeral Directors (SAIF), strictly adhering to their codes of practice and price transparency.</li>
+            <li><strong>Transparent All-Inclusive Packages:</strong> All our funeral packages clearly state third-party disbursements so families never face unexpected costs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. SERVICES PAGE ==================== -->
+    <section id="page-services" class="page-section">
+      <span class="eyebrow">Complete Funeral Care</span>
+      <h2 class="section-title">Our Funeral Services</h2>
+      <p class="section-subtitle">
+        Every life is unique. Whether you wish for a traditional church service, a quiet unattended cremation, or a celebration of life in a woodland hall, we guide you through every detail.
+      </p>
+
+      <div class="grid-3">
+        <div class="glass-tile">
+          <span class="badge">Ceremonies</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Religious &amp; Civil Funerals</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Full arrangements for church services, churchyard burials, cemetery interments, and cremations at Cromer Crematorium, St Faith's, Earlham, or Cedar Hall at Bluebell Wood. We coordinate closely with local clergy, religious leaders, and independent civil celebrants.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">24/7 Care</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Chapel of Rest &amp; Preparation</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Dignified conveyance of your loved one into our care at 32 West Street, Cromer. We provide gentle care and preparation, dressing your loved one in their own clothes or a gown, with peaceful Chapel of Rest visits arranged to suit your family.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Cortège &amp; Vehicles</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Hearse, Limousine &amp; Bespoke Transport</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Provision of our immaculate traditional hearse, 7-seater family limousine with chauffeur, or specialist transport including a traditional Horse-Drawn Carriage or Motorcycle Hearse travelling via a meaningful local address.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Stationery &amp; Tributes</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Order of Service &amp; Press Notices</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Bespoke design and printing of Order of Service booklets featuring cherished photographs, hymns, poems, and readings. We also place death notices in the Eastern Daily Press (EDP), North Norfolk News, and online tribute pages.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Keepsakes</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">EverWith Memorial Jewellery</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            As official stockists of EverWith Memorial Jewellery, we offer fine sterling silver and 9ct gold pieces created with a small pinch of ashes or lock of hair, complete with diamond-cut engraving and presentation boxes.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Support Services</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Floral Tributes, Donations &amp; Repatriation</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            We coordinate bespoke floral arrangements with local florists, manage charitable donation collections in memory of your loved one (at zero administration cost to families), and arrange national or international repatriation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. FUNERAL PACKAGES AND COSTS ==================== -->
+    <section id="page-packages" class="page-section">
+      <span class="eyebrow">Clear, Compassionate &amp; All-Inclusive</span>
+      <h2 class="section-title">Funeral Packages and Costs</h2>
+      <p class="section-subtitle">
+        We understand that arranging a funeral is a sensitive process. Our compassionate team is here to guide you through every step. Choose from our thoughtfully designed funeral packages for peace of mind. <strong>The Disbursements are all covered in the prices below</strong> (including Crematorium fee and Minister or Civil Celebrant where stated).
+      </p>
+
+      <div class="grid-3" style="margin-bottom: 3.5rem;">
+        <!-- 1. Direct Unattended -->
+        <div class="glass-tile">
+          <span class="badge">Unattended Service</span>
+          <h3 style="font-size: 1.65rem;">Direct Unattended Cremation</h3>
+          <span class="price-tag">£1,450.00 <span class="price-sub">incl. disbursements</span></span>
+          <ul class="feature-list">
+            <li>The provision of the Funeral Director's services and attending to all necessary arrangements for the direct unattended cremation without guests permitted at Cromer Crematorium (who choose the date and time).</li>
+            <li>Removal of your loved one into our Chapel of Rest.</li>
+            <li>A Basic Coffin with a name plate.</li>
+            <li>Provision of the Private Ambulance and Funeral Director from our Chapel of Rest at 32 West Street to Cromer Crematorium.</li>
+            <li>Inform next of kin once the ashes are ready to collect.</li>
+          </ul>
+          <a href="#contact" class="btn btn-glass" style="width:100%;">Enquire About This Package</a>
+        </div>
+
+        <!-- 2. Early or Late Cremation -->
+        <div class="glass-tile">
+          <span class="badge">9:30am or 4:30pm Service</span>
+          <h3 style="font-size: 1.65rem;">Early or Late Cremation</h3>
+          <span class="price-tag">£2,800.00 <span class="price-sub">incl. disbursements</span></span>
+          <ul class="feature-list">
+            <li>The provision of the Funeral Director's services and attending to all necessary arrangements for the early or late service cremation at Cromer Crematorium, including booking the family's choice of date (Monday to Friday) at 9:30am or 4:30pm.</li>
+            <li>Removal of your loved one into our Chapel of Rest.</li>
+            <li>A Lamboard Coffin with name plate.</li>
+            <li>Care and preparation of your loved one dressed in own clothes or a gown.</li>
+            <li>Provision of the Hearse, Funeral Director, and Bearers from our Chapel of Rest at 32 West Street, Cromer, to the local Crematorium.</li>
+            <li>Inform the next of kin once the ashes are ready to collect.</li>
+          </ul>
+          <p style="font-size: 0.8rem; color: var(--accent-gold-light); margin-bottom: 1rem;">
+            *If you would like us to arrange a Minister or Celebrant to conduct the service, this can be arranged subject to an additional fee of £240.00.
+          </p>
+          <a href="#contact" class="btn btn-glass" style="width:100%;">Enquire About This Package</a>
+        </div>
+
+        <!-- 3. Supreme Cremation (Cedar Hall) -->
+        <div class="glass-tile">
+          <span class="badge">Cedar Hall, Bluebell Wood</span>
+          <h3 style="font-size: 1.65rem;">Supreme Cremation</h3>
+          <span class="price-tag">£3,300.00 <span class="price-sub">incl. disbursements</span></span>
+          <ul class="feature-list">
+            <li>The provision of the Funeral Director's services and attending to all necessary arrangements for the funeral service at Cedar Hall, Bluebell Wood including a Civil Celebrant and direct unattended cremation at a local Crematorium.</li>
+            <li>Removal of your loved one into our Chapel of Rest.</li>
+            <li>A Lamboard Coffin with handles and name plate.</li>
+            <li>Provision of the Hearse, Funeral Director, and Bearers from our Chapel of Rest at 32 West Street, Cromer to Cedar Hall.</li>
+            <li>Inform next of kin once the ashes are ready to collect.</li>
+          </ul>
+          <a href="#contact" class="btn btn-glass" style="width:100%;">Enquire About This Package</a>
+        </div>
+
+        <!-- 4. Standard Funeral -->
+        <div class="glass-tile featured">
+          <span class="badge">Full Service • Cremation or Burial</span>
+          <h3 style="font-size: 1.65rem;">Standard Funeral</h3>
+          <span class="price-tag">£4,250.00 <span class="price-sub">incl. disbursements</span></span>
+          <ul class="feature-list">
+            <li>The provision of the Funeral Director's services and attending to all necessary arrangements for the full funeral service and cremation or burial including a Minister or Civil Celebrant.</li>
+            <li>Removal of your loved one into our Chapel of Rest and visits (if required), arranged during office hours.</li>
+            <li>Care and preparation of your loved one dressed in own clothes or a gown.</li>
+            <li>An Elm Coffin with handles and plate.</li>
+            <li>Provision of the Hearse, Funeral Director, and Bearers from our Chapel of Rest at 32 West Street, Cromer to the funeral service location if different from the choice of Crematorium or place of Burial.</li>
+          </ul>
+          <p style="font-size: 0.8rem; color: var(--accent-gold-light); margin-bottom: 1rem;">
+            *Churchyard only – please ask for County Council burial costings.
+          </p>
+          <a href="#contact" class="btn btn-primary" style="width:100%;">Enquire About This Package</a>
+        </div>
+
+        <!-- 5. Traditional Funeral -->
+        <div class="glass-tile featured">
+          <span class="badge">Includes Limousine &amp; Booklets</span>
+          <h3 style="font-size: 1.65rem;">Traditional Funeral</h3>
+          <span class="price-tag">£4,550.00 <span class="price-sub">incl. disbursements</span></span>
+          <ul class="feature-list">
+            <li>The provision of the Funeral Director's services and attending to all necessary arrangements for the full funeral service and cremation or burial including a Minister or Civil Celebrant.</li>
+            <li>Removal of the deceased into our Chapel of Rest and visits (if required), arranged at any time, including outside of office hours.</li>
+            <li>Care and preparation of your loved one dressed in own clothes or a gown.</li>
+            <li>An Elm Coffin with handles and plate.</li>
+            <li>Provision of the Hearse, Funeral Director, and Bearers from our Chapel of Rest at 32 West Street to the funeral service location.</li>
+            <li>Design and print of up to 50 Order of Service booklets.</li>
+            <li>Supply of our 7-seater limousine with driver to collect from a designated address, transport to the funeral service, and then onto the wake location.</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;">Enquire About This Package</a>
+        </div>
+
+        <!-- 6 & 7. Specialist Funerals -->
+        <div class="glass-tile">
+          <span class="badge">Bespoke Cortège</span>
+          <h3 style="font-size: 1.65rem;">Motorcycle &amp; Horse-Drawn Funerals</h3>
+          <div style="margin: 1rem 0; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+            <h4 style="font-size: 1.25rem; color: var(--accent-gold-light);">Motorcycle Funeral</h4>
+            <span class="price-tag" style="font-size: 1.8rem; margin: 0.3rem 0;">From £5,300.00 <span class="price-sub">incl. disbursements</span></span>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Based on our Standard Funeral Package with Elm Coffin, to include a motorcycle hearse going via a chosen address and onto a local Crematorium or Church.
+            </p>
+          </div>
+          <div>
+            <h4 style="font-size: 1.25rem; color: var(--accent-gold-light);">Horse Drawn Carriage Funeral</h4>
+            <span class="price-tag" style="font-size: 1.8rem; margin: 0.3rem 0;">From £5,500.00 <span class="price-sub">incl. disbursements</span></span>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              Based on our Standard Funeral Package with Elm Coffin, to include a horse and carriage going via a chosen address and onto a local Crematorium or Church.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn-glass" style="width:100%;">Discuss Bespoke Options</a>
+        </div>
+      </div>
+
+      <!-- Local Crematoria & Cemeteries Fee Reference Table -->
+      <div class="glass-tile">
+        <span class="eyebrow">Statutory Transparency</span>
+        <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Local Crematoria &amp; Cemetery Fees Guide</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">
+          Below are reference fees for local crematoria and cemeteries across Norfolk, alongside key individual service elements from our Standardised Price List:
+        </p>
+        <div class="glass-table-wrap">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th>Location / Service Element</th>
+                <th>Area / Postcode</th>
+                <th>Reference Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cromer Crematorium</strong> (Standard Attended Fee)</td>
+                <td>Holt Road, Cromer, NR27 9JJ</td>
+                <td>£1,215.00</td>
+              </tr>
+              <tr>
+                <td><strong>Norwich St Faith Crematorium</strong></td>
+                <td>Norwich, NR10 3LF</td>
+                <td>£1,325.00</td>
+              </tr>
+              <tr>
+                <td><strong>Earlham Crematorium</strong></td>
+                <td>Norwich, NR2 3RG</td>
+                <td>£1,250.00</td>
+              </tr>
+              <tr>
+                <td><strong>Breckland Crematorium</strong></td>
+                <td>Norfolk, NR9 4NR</td>
+                <td>£1,095.00</td>
+              </tr>
+              <tr>
+                <td><strong>Great Yarmouth Crematorium</strong></td>
+                <td>Great Yarmouth, NR31 7JJ</td>
+                <td>£1,050.00</td>
+              </tr>
+              <tr>
+                <td><strong>Cromer Cemetery</strong></td>
+                <td>Cromer, NR27 9JW</td>
+                <td>£1,190.00</td>
+              </tr>
+              <tr>
+                <td><strong>Sheringham Cemetery</strong></td>
+                <td>Sheringham, NR26 8XQ</td>
+                <td>£771.00</td>
+              </tr>
+              <tr>
+                <td><strong>Aylsham Cemetery</strong></td>
+                <td>Aylsham, NR11 6BW</td>
+                <td>£748.00</td>
+              </tr>
+              <tr>
+                <td><strong>Wells Town Cemetery</strong></td>
+                <td>Wells-next-the-Sea, NR23 1RB</td>
+                <td>£426.00</td>
+              </tr>
+              <tr>
+                <td><strong>Hearse, Funeral Director, Driver &amp; Bearers</strong> (within 25-mile radius)</td>
+                <td>Cromer &amp; District</td>
+                <td>£600.00</td>
+              </tr>
+              <tr>
+                <td><strong>Viewing of Deceased in Chapel of Rest</strong> (by appointment)</td>
+                <td>32 West Street, Cromer</td>
+                <td>£10.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. FUNERAL PLANS PAGE ==================== -->
+    <section id="page-plans" class="page-section">
+      <span class="eyebrow">Peace of Mind for Your Family</span>
+      <h2 class="section-title">Pre-Paid Funeral Plans</h2>
+      <p class="section-subtitle">
+        Talking about death and funerals isn't easy. And yet there are several very good reasons why having a funeral plan in place makes perfect sense – from an emotional, practical and financial point of view.
+      </p>
+
+      <div class="grid-2" style="margin-bottom: 2.5rem;">
+        <div class="glass-tile featured">
+          <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Why Plan Ahead with Cromer &amp; District?</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            From a traditional funeral to something simpler, with a plan in place you can make sure you get the send-off you really want, while sparing your loved ones from having to make difficult decisions or face rising costs at an emotional time.
+          </p>
+          <ul class="feature-list">
+            <li><strong>Fix Funeral Director Costs at Today's Prices:</strong> Shield your family from future inflation on our funeral director services.</li>
+            <li><strong>Record Your Personal Wishes:</strong> Specify your preferred music, hymns, readings, coffin choice, floral tributes, or route through Cromer and North Norfolk.</li>
+            <li><strong>FCA-Regulated Protection:</strong> All pre-paid plan funds are held securely in an independent trust fund or regulated insurance policy.</li>
+            <li><strong>Flexible Payment Options:</strong> Pay in a single lump sum or spread the cost over manageable monthly instalments.</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="margin-top: 0.75rem;">Book a Free Home or Office Consultation</a>
+        </div>
+
+        <div class="glass-tile">
+          <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">How Our Planning Process Works</h3>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+              <strong style="color: var(--accent-gold-light); display:block;">1. Informal Conversation</strong>
+              <p style="color: var(--text-muted); font-size: 0.93rem;">Meet with Adrian or Catherine at 32 West Street, Cromer, or in your own home with zero obligation.</p>
+            </div>
+            <div>
+              <strong style="color: var(--accent-gold-light); display:block;">2. Tailoring Your Plan</strong>
+              <p style="color: var(--text-muted); font-size: 0.93rem;">Choose one of our established packages (Direct, Early/Late, Supreme, Standard, or Traditional) or create a fully bespoke arrangement.</p>
+            </div>
+            <div>
+              <strong style="color: var(--accent-gold-light); display:block;">3. Safe Documentation</strong>
+              <p style="color: var(--text-muted); font-size: 0.93rem;">You receive full written confirmation of your plan for yourself and your next of kin, and we keep a secure copy on file at our Cromer office.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. CASKETS AND URNS PAGE ==================== -->
+    <section id="page-caskets" class="page-section">
+      <span class="eyebrow">Ashes Caskets, Urns &amp; Scatter Tubes</span>
+      <h2 class="section-title">Caskets, Urns and Scatter Tubes</h2>
+      <p class="section-subtitle">
+        Explore our complete range of solid wood caskets, natural eco-friendly caskets, decorative picture caskets, metal urns, and scatter tubes. Filter by category below:
+      </p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCaskets('all', this)">All Items (26)</button>
+        <button class="filter-btn" onclick="filterCaskets('wood', this)">Solid Oak &amp; Wooden Caskets</button>
+        <button class="filter-btn" onclick="filterCaskets('eco', this)">Seagrass, Willow &amp; Bamboo</button>
+        <button class="filter-btn" onclick="filterCaskets('picture', this)">Picture Caskets</button>
+        <button class="filter-btn" onclick="filterCaskets('urn', this)">Metal Urns &amp; Handles</button>
+        <button class="filter-btn" onclick="filterCaskets('tube', this)">Scatter Tubes (£20+)</button>
+      </div>
+
+      <div class="grid-4" id="casketsGrid">
+        <!-- Wooden Caskets -->
+        <div class="glass-tile casket-item" data-cat="wood">
+          <span class="badge">Wooden Casket</span>
+          <h4 style="font-size: 1.25rem;">Surrey Solid Oak, Veneered Oak, Utile &amp; Sapele</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £90.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="wood">
+          <span class="badge">Wooden Casket</span>
+          <h4 style="font-size: 1.25rem;">Essex Solid Oak</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £95.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="wood">
+          <span class="badge">Wooden Casket</span>
+          <h4 style="font-size: 1.25rem;">Kent Solid Oak</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £80.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="wood">
+          <span class="badge">Wooden Casket</span>
+          <h4 style="font-size: 1.25rem;">Vault Box Solid Oak</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £75.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="wood">
+          <span class="badge">Wooden Casket</span>
+          <h4 style="font-size: 1.25rem;">Norfolk Solid Oak, Utile and Oak Stained</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £85.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="wood">
+          <span class="badge">Wooden Casket</span>
+          <h4 style="font-size: 1.25rem;">Knotty Oak Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £95.00</span>
+        </div>
+
+        <!-- Fittings / Handles -->
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Fittings</span>
+          <h4 style="font-size: 1.25rem;">Urn Ring Handle</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £17.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Fittings</span>
+          <h4 style="font-size: 1.25rem;">Drop Pendant Handle</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £17.00</span>
+        </div>
+
+        <!-- Eco Caskets -->
+        <div class="glass-tile casket-item" data-cat="eco">
+          <span class="badge">Natural Woven</span>
+          <h4 style="font-size: 1.25rem;">Seagrass Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £75.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="eco">
+          <span class="badge">Natural Woven</span>
+          <h4 style="font-size: 1.25rem;">Willow Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £75.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="eco">
+          <span class="badge">Natural Woven</span>
+          <h4 style="font-size: 1.25rem;">Bamboo Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £65.00</span>
+        </div>
+
+        <!-- Picture Caskets -->
+        <div class="glass-tile casket-item" data-cat="picture">
+          <span class="badge">Picture Casket</span>
+          <h4 style="font-size: 1.25rem;">Bluebell Wood Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £200.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="picture">
+          <span class="badge">Picture Casket</span>
+          <h4 style="font-size: 1.25rem;">Rose, Iris &amp; Butterfly Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £200.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="picture">
+          <span class="badge">Picture Casket</span>
+          <h4 style="font-size: 1.25rem;">Winter Scene Casket</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £200.00</span>
+        </div>
+
+        <!-- Urns -->
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Classic Urn</span>
+          <h4 style="font-size: 1.25rem;">Bronze or Aluminium Urn</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £170.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Classic Urn</span>
+          <h4 style="font-size: 1.25rem;">Althorp Red Urn</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £170.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Classic Urn</span>
+          <h4 style="font-size: 1.25rem;">Devon Gold Urn</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £170.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Decorative Urn</span>
+          <h4 style="font-size: 1.25rem;">Farnham Flowers Urn</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £170.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="urn">
+          <span class="badge">Classic Urn</span>
+          <h4 style="font-size: 1.25rem;">Gloucester Pewter Urn</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £170.00</span>
+        </div>
+
+        <!-- Scatter Tubes -->
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Autumn Wood Scatter Tube</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Bluebell Wood Scatter Tube</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Burgundy Scatter Tube</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Starry Night Scatter Tube</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Teddy Bear Scatter Tube</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Sunflower Scatter Tube</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+        <div class="glass-tile casket-item" data-cat="tube">
+          <span class="badge">Scatter Tube</span>
+          <h4 style="font-size: 1.25rem;">Garden, Golf &amp; Poppy Scatter Tubes</h4>
+          <span class="price-tag" style="font-size: 1.5rem;">From £20.00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. COFFINS PAGE ==================== -->
+    <section id="page-coffins" class="page-section">
+      <span class="eyebrow">Traditional, Solid Timber, Eco &amp; Bespoke</span>
+      <h2 class="section-title">Our Range of Coffins</h2>
+      <p class="section-subtitle">
+        We supply a wide selection of British-crafted traditional coffins, natural woven willow and seagrass coffins suitable for green woodland burials, and bespoke picture coffins.
+      </p>
+
+      <div class="grid-3">
+        <div class="glass-tile">
+          <span class="badge">Included in Early/Late &amp; Supreme</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Lamboard &amp; Classic Foil Veneer</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            A simple, dignified wood-effect coffin complete with engraved nameplate and traditional fittings. Ideal for simple and early/late cremation services.
+          </p>
+        </div>
+
+        <div class="glass-tile featured">
+          <span class="badge">Included in Standard &amp; Traditional</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Traditional Elm &amp; Oak Veneer</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Crafted with real wood Elm or Oak veneer with a warm polished finish, decorative mouldings, traditional handles, satin interior lining, and engraved nameplate.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Premier Craftsmanship</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Solid Oak &amp; Solid Mahogany</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Handcrafted from solid European oak or mahogany with raised lids and panelled sides, finished with brass-effect or wooden bar handles for burial or cremation.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Natural &amp; Woodland Burial</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.6rem;">English Willow, Seagrass &amp; Bamboo</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            100% biodegradable, hand-woven natural coffins available in traditional or curved end shapes, with optional coloured bands and natural cotton linings.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">Personalised Design</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.6rem;">Bespoke Picture &amp; Painted Coffins</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Celebrate a passion, hobby, coastal Norfolk landscape, garden scene, or favourite colour with a custom-printed or painted coffin tailored to your loved one's life.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <span class="badge">American Style</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.6rem;">American-Style Caskets</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Hinged-lid caskets crafted in solid timber or high-gloss metal finishes with luxurious upholstered interiors, available on request.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. FUNERAL NOTICES AND DONATIONS ==================== -->
+    <section id="page-notices" class="page-section">
+      <span class="eyebrow">Tributes &amp; Charitable Giving</span>
+      <h2 class="section-title">Funeral Notices and Donations</h2>
+      <p class="section-subtitle">
+        Our online tribute pages act as both a funeral notice and a lasting memorial where family and friends can check service times, share memories, and make charitable donations in memory of a loved one. Every penny donated goes directly to the chosen charities.
+      </p>
+
+      <div class="glass-tile" style="margin-bottom: 2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+          <div>
+            <h3 style="font-size: 1.65rem;">Search Recent Funeral Notices</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Donations may also be sent by cheque c/o Cromer and District Independent Funeral Services, 32 West Street, Cromer, Norfolk, NR27 9DS.</p>
+          </div>
+          <input type="text" id="noticeSearch" class="form-control" style="max-width: 320px;" placeholder="Search by name (e.g. Breeze, Kirk, Gill)..." oninput="filterNotices()" />
+        </div>
+
+        <div class="grid-3" id="noticesList">
+          <div class="glass-tile notice-card" data-name="geoffrey jimmy arthur breeze">
+            <span class="badge">Service: 23 Oct 2026</span>
+            <h4 style="font-size: 1.35rem; margin-bottom: 0.4rem;">Geoffrey 'Jimmy' Arthur Breeze</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              Passed away at Halsey House on 10th September 2026, aged 91 years. Funeral service at Cromer Crematorium on Friday 23rd October 2026 at 11:30am.
+            </p>
+            <p style="font-size: 0.82rem; color: var(--accent-gold-light);">
+              <strong>Donations:</strong> Halsey House Amenity Fund c/o 32 West Street, Cromer, NR27 9DS.
+            </p>
+          </div>
+
+          <div class="glass-tile notice-card" data-name="geoffrey alfred kirk">
+            <span class="badge">Cromer Crematorium &amp; Cemetery</span>
+            <h4 style="font-size: 1.35rem; margin-bottom: 0.4rem;">Geoffrey Alfred Kirk</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              Of Cromer. Passed away aged 79 years. Funeral service held at Cromer Crematorium Chapel followed by interment at Cromer Cemetery.
+            </p>
+            <p style="font-size: 0.82rem; color: var(--accent-gold-light);">
+              <strong>Enquiries &amp; Donations:</strong> Cromer &amp; District Independent Funeral Services (01263 514814).
+            </p>
+          </div>
+
+          <div class="glass-tile notice-card" data-name="kenneth dean potter heigham">
+            <span class="badge">Potter Heigham</span>
+            <h4 style="font-size: 1.35rem; margin-bottom: 0.4rem;">Kenneth Dean</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+              Of Potter Heigham. Passed away peacefully at home in Potter Heigham. Lovingly remembered by all his family and friends.
+            </p>
+            <p style="font-size: 0.82rem; color: var(--accent-gold-light);">
+              <strong>Tributes:</strong> c/o 32 West Street, Cromer, Norfolk, NR27 9DS.
+            </p>
+          </div>
+
+          <div class="glass-tile notice-card" data-name="austin john gill">
+            <span class="badge">Published Notice</span>
+            <h4 style="font-size: 1.35rem; margin-bottom: 0.4rem;">Austin John Gill</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              In loving memory. All enquiries and charitable donations care of Cromer and District Independent Funeral Services, 32 West Street, Cromer.
+            </p>
+          </div>
+
+          <div class="glass-tile notice-card" data-name="hubert allenden">
+            <span class="badge">Published Notice</span>
+            <h4 style="font-size: 1.35rem; margin-bottom: 0.4rem;">Hubert Allenden</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              In loving memory. All enquiries and charitable donations care of Cromer and District Independent Funeral Services, 32 West Street, Cromer.
+            </p>
+          </div>
+
+          <div class="glass-tile notice-card" data-name="reginald frank ephraim amis">
+            <span class="badge">Published Notice</span>
+            <h4 style="font-size: 1.35rem; margin-bottom: 0.4rem;">Reginald Frank Ephraim Amis</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Forever in our thoughts. Donations and tributes managed by Cromer and District Independent Funeral Services.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 9. THE TEAM PAGE ==================== -->
+    <section id="page-team" class="page-section">
+      <span class="eyebrow">Over 78 Years of Combined Experience</span>
+      <h2 class="section-title">Meet The Team</h2>
+      <p class="section-subtitle">
+        Our compassionate, local team is dedicated to supporting families across Cromer and North Norfolk with warmth, dignity, and personal care.
+      </p>
+
+      <div class="grid-3">
+        <div class="glass-tile featured">
+          <div class="avatar-circle">AA</div>
+          <span class="badge">Owner &amp; Funeral Director</span>
+          <h3 style="font-size: 1.6rem; margin-bottom: 0.4rem;">Adrian Amis</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Owner, Funeral Arranger, and Funeral Director. Adrian leads Cromer and District Independent Funerals with a commitment to personal, independent care—ensuring every family's wishes are carried out with precision, sympathy, and warmth.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <div class="avatar-circle">C</div>
+          <span class="badge">Funeral Arranger</span>
+          <h3 style="font-size: 1.6rem; margin-bottom: 0.4rem;">Catherine</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            After two decades in hospitality and wedding management, Catherine transitioned into funeral arranging. She considers it a privilege to guide families gently through every practical and personal detail of their loved one's farewell.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <div class="avatar-circle">B</div>
+          <span class="badge">Bearer &amp; Driver</span>
+          <h3 style="font-size: 1.6rem; margin-bottom: 0.4rem;">Barrie</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Joined Cromer and District in October 2020 after previously working for Dignity and the Co-op, bringing extensive experience in ceremonial bearing and chauffeuring.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <div class="avatar-circle">D</div>
+          <span class="badge">Funeral Support Team</span>
+          <h3 style="font-size: 1.6rem; margin-bottom: 0.4rem;">Dedicated Care Specialist</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            Joined the business in 2019 following over 30 years of dedicated service working in the NHS, bringing deep clinical care, empathy, and respect to our Chapel of Rest and family support.
+          </p>
+        </div>
+
+        <div class="glass-tile">
+          <div class="avatar-circle">J</div>
+          <span class="badge">Bearer &amp; Driver</span>
+          <h3 style="font-size: 1.6rem; margin-bottom: 0.4rem;">John</h3>
+          <p style="color: var(--text-muted); font-size: 0.94rem;">
+            An integral member of our ceremonial bearer and driver team, ensuring every funeral cortège across North Norfolk proceeds with the utmost dignity and respect.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 10. HELP AND SUPPORT PAGE ==================== -->
+    <section id="page-support" class="page-section">
+      <span class="eyebrow">Practical Guidance &amp; Bereavement Articles</span>
+      <h2 class="section-title">Help and Support</h2>
+      <p class="section-subtitle">
+        Sometimes a death may be expected, but nothing prepares us for the emotional shock of losing someone close. Making funeral arrangements can seem very confusing, but with our help and guidance, we will endeavour to make it as straightforward as possible.
+      </p>
+
+      <!-- Immediate Steps Checklist -->
+      <div class="glass-tile featured" style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">What To Do When Someone Dies</h3>
+        <div class="grid-3">
+          <div>
+            <h4 style="color: var(--accent-gold-light); font-size: 1.2rem; margin-bottom: 0.4rem;">1. Medical Certificate</h4>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">
+              If a death occurs at home or in a care home, contact the GP or call NHS 111. A Medical Examiner / Doctor will issue the Medical Certificate of Cause of Death (MCCD) directly to the Registrar. Call us at any hour on <strong>01263 514814</strong> to bring your loved one into our Chapel of Rest.
+            </p>
+          </div>
+          <div>
+            <h4 style="color: var(--accent-gold-light); font-size: 1.2rem; margin-bottom: 0.4rem;">2. Registering the Death</h4>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">
+              Once the Medical Examiner has contacted you, book an appointment at a Norfolk Registration Office (such as Cromer, North Walsham, Holt, or Norwich) to register the death within 5 days and obtain the green form for burial or cremation.
+            </p>
+          </div>
+          <div>
+            <h4 style="color: var(--accent-gold-light); font-size: 1.2rem; margin-bottom: 0.4rem;">3. Arranging the Funeral</h4>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">
+              Contact Adrian and the team at 32 West Street. We will handle all forms, coordinate with the crematorium, church, cemetery, and celebrant, and guide you at your own pace.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog / Articles by Adrian Amis -->
+      <h3 class="section-title" style="font-size: 2rem;">Guidance Articles by Adrian Amis</h3>
+      <div class="grid-3">
+        <article class="glass-tile">
+          <span class="badge">By Adrian Amis • 3 min read</span>
+          <h4 style="font-size: 1.4rem; margin-bottom: 0.65rem;">Creating Lasting Tributes: Ideas for Memorialising a Loved One</h4>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">
+            The funeral service provides a vital opportunity to gather, grieve, and say a formal farewell. Yet, for many, the desire to honour and remember a loved one continues long after the day itself—whether through online tribute pages, charitable legacies, scatter tubes at a favourite coastal spot, or EverWith memorial jewellery.
+          </p>
+        </article>
+
+        <article class="glass-tile">
+          <span class="badge">By Adrian Amis • 6 min read</span>
+          <h4 style="font-size: 1.4rem; margin-bottom: 0.65rem;">Guide to What You Need to Do When Someone Dies</h4>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">
+            Navigating the immediate aftermath of a loved one's passing can be incredibly challenging, especially when you're dealing with grief. Our step-by-step guide walks you through contacting medical professionals, registering the death in Norfolk, using the Tell Us Once service, and planning the ceremony.
+          </p>
+        </article>
+
+        <article class="glass-tile">
+          <span class="badge">By Adrian Amis • 2 min read</span>
+          <h4 style="font-size: 1.4rem; margin-bottom: 0.65rem;">The Compassionate Role of a Funeral Director: More Than Just Logistics</h4>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">
+            Losing a loved one is one of life's most challenging experiences. In times of profound grief, organising a funeral can feel overwhelming. As an independent funeral director, our role goes far beyond logistics—providing a calm, steady hand and personal support whenever you need us.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== 11. CONTACT US PAGE ==================== -->
+    <section id="page-contact" class="page-section">
+      <span class="eyebrow">Available 24 Hours a Day, 365 Days a Year</span>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">
+        Whether you require immediate assistance following a bereavement or would like to discuss a funeral package or pre-paid plan, we are here for you day and night.
+      </p>
+
+      <div class="grid-2">
+        <div class="glass-tile">
+          <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Get in Touch</h3>
+          <form id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="grid-2" style="gap: 1rem; grid-template-columns: 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name*</label>
+                <input type="text" id="firstName" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name*</label>
+                <input type="text" id="lastName" class="form-control" required />
+              </div>
+            </div>
+            <div class="grid-2" style="gap: 1rem; grid-template-columns: 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="email">Email*</label>
+                <input type="email" id="email" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone</label>
+                <input type="tel" id="phone" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input type="text" id="subject" class="form-control" placeholder="e.g. Funeral Arrangement, Package Enquiry, Pre-Paid Plan" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea id="message" rows="4" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Enquiry</button>
+            <p id="formFeedback" style="display:none; margin-top:1rem; color:#4ade80; font-size:0.9rem;"></p>
+          </form>
+        </div>
+
+        <div class="glass-tile">
+          <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Our Cromer Office &amp; Chapel of Rest</h3>
+          <ul class="feature-list" style="margin-bottom: 2rem;">
+            <li><strong>Company:</strong> Cromer and District Independent Funeral Services LTD (Company No. 08334736)</li>
+            <li><strong>Address:</strong> 32 West Street, Cromer, Norfolk, NR27 9DS</li>
+            <li><strong>24-Hour Telephone:</strong> <a href="tel:01263514814" style="color:var(--accent-gold-light);">01263 514814</a></li>
+            <li><strong>Mobile:</strong> <a href="tel:07733378109" style="color:var(--accent-gold-light);">07733 378109</a></li>
+            <li><strong>Email:</strong> <a href="mailto:info@cromeranddistrictfunerals.co.uk" style="color:var(--accent-gold-light);">info@cromeranddistrictfunerals.co.uk</a></li>
+            <li><strong>Availability:</strong> Open 24 hours a day, 365 days a year (Home visits available by appointment).</li>
+          </ul>
+
+          <div style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border); height: 240px;">
+            <iframe 
+              title="32 West Street, Cromer Map"
+              width="100%" 
+              height="100%" 
+              style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(90%);" 
+              loading="lazy" 
+              allowfullscreen 
+              src="https://www.openstreetmap.org/export/embed.html?bbox=1.2945%2C52.9295%2C1.3025%2C52.9335&amp;layer=mapnik&amp;marker=52.9315%2C1.2985">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 12. DOCUMENTS & PRIVACY POLICY ==================== -->
+    <section id="page-legal" class="page-section">
+      <span class="eyebrow">Regulatory &amp; GDPR Compliance</span>
+      <h2 class="section-title">Useful Documents, Information &amp; Privacy Policy</h2>
+
+      <!-- Useful Documents -->
+      <div class="glass-tile" style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.65rem; margin-bottom: 1rem;">Useful Documents and Information (CMA &amp; SAIF Compliance)</h3>
+        <div class="grid-3">
+          <div style="padding: 1rem; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+            <strong style="color: var(--accent-gold-light); display:block; margin-bottom:0.35rem;">Standardised Price List</strong>
+            <p style="font-size: 0.86rem; color: var(--text-muted);">Attended Funeral &amp; Unattended Funeral statutory breakdown available in our Packages &amp; Costs section and on request at 32 West Street.</p>
+          </div>
+          <div style="padding: 1rem; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+            <strong style="color: var(--accent-gold-light); display:block; margin-bottom:0.35rem;">Disclosure of Interests</strong>
+            <p style="font-size: 0.86rem; color: var(--text-muted);">Cromer and District Independent Funeral Services LTD (08334736) is wholly independent and owned by Adrian Amis. We have no financial interest in any price comparison website.</p>
+          </div>
+          <div style="padding: 1rem; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); border: 1px solid var(--glass-border);">
+            <strong style="color: var(--accent-gold-light); display:block; margin-bottom:0.35rem;">SAIF Code of Practice &amp; Terms</strong>
+            <p style="font-size: 0.86rem; color: var(--text-muted);">We strictly adhere to the SAIF and NAFD Codes of Practice. Full Terms of Business and Additional Options Price Lists are provided with every estimate.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Privacy Policy -->
+      <div class="glass-tile">
+        <span class="badge">Last Updated: March 2026</span>
+        <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Privacy Policy</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.93rem;">
+          This Privacy Policy explains how Cromer and District Independent Funeral Services LTD ("we", "us", or "our") collects, uses, and protects your personal information when you visit our website https://www.cromeranddistrictfunerals.co.uk/ (the "Site").
+        </p>
+        <div class="grid-2" style="gap: 1.25rem; font-size: 0.9rem; color: var(--text-muted);">
+          <div>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">1. Data Controller:</strong> For the purposes of the UK General Data Protection Regulation (UK GDPR), Cromer and District Independent Funeral Services LTD is the Data Controller.</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">2. Information We Collect:</strong><br>
+            • <em>Personal Information:</em> When you contact us via our website form or email, we collect your name, email address, telephone number, and any other details you choose to provide so we can assist you.<br>
+            • <em>Technical Data:</em> This includes your IP address, browser type, operating system, and information about how you use our website, collected via cookies.</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">3. Lawful Basis for Processing:</strong> Consent (when you voluntarily fill out a contact form), Legitimate Interests (to respond to your enquiries, provide funeral services, and improve our website's functionality), and Legal Obligation (where we are required to keep records for legal or regulatory purposes).</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">4. How We Use Your Information:</strong> To respond to your enquiries and provide support during bereavement, manage and deliver our funeral services, analyse website usage, and ensure the security of our Site.</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">5. Data Retention:</strong> We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including satisfying any legal, accounting, or reporting requirements.</p>
+          </div>
+          <div>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">6. Sharing Your Information:</strong> We do not sell your data. We may share your information with Service Providers (IT/hosting), Professional Partners (only when necessary to carry out funeral arrangements such as celebrants, florists, or crematoria, and only with your prior acknowledgement), or Legal Requirements if required by UK law.</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">7. Your Rights:</strong> Under UK data protection law, you have the right to Access, Rectification, Erasure ("right to be forgotten"), Restriction, and Object to processing.</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">8. Security &amp; 9. Cookies:</strong> We have put in place appropriate security measures to prevent your personal data from being accidentally lost or accessed in an unauthorised way. You can set your browser to refuse all or some browser cookies.</p>
+            <p style="margin-bottom:0.75rem;"><strong style="color:var(--text-main);">10. Contact Us &amp; Complaints:</strong> Contact us at <a href="mailto:info@cromeranddistrictfunerals.co.uk" style="color:var(--accent-gold);">info@cromeranddistrictfunerals.co.uk</a>. You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at www.ico.org.uk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Glassmorphic Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom: 1rem;">
+            <div class="brand-crest">C&amp;D</div>
+            <div class="brand-text">
+              <h2 style="font-size: 1.3rem;">Cromer &amp; District</h2>
+              <span>Independent Funeral Services LTD</span>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem;">
+            Company No: 08334736<br>
+            32 West Street, Cromer, Norfolk, NR27 9DS<br>
+            Available 24 hours a day, 365 days a year
+          </p>
+          <p style="font-size: 0.9rem;">
+            <a href="tel:01263514814" style="color: var(--accent-gold-light);">01263 514814</a> / <a href="tel:07733378109" style="color: var(--accent-gold-light);">07733 378109</a><br>
+            <a href="mailto:info@cromeranddistrictfunerals.co.uk" style="color: var(--text-muted);">info@cromeranddistrictfunerals.co.uk</a>
+          </p>
+          <div class="accreditation-badges">
+            <span class="accred-pill">✓ NAFD Member</span>
+            <span class="accred-pill">✓ SAIF Independent Member</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-gold-light);">Navigation</h3>
+          <ul style="list-style:none; display:grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.88rem; color: var(--text-muted);">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#packages">Packages &amp; Costs</a></li>
+            <li><a href="#plans">Funeral Plans</a></li>
+            <li><a href="#caskets">Caskets &amp; Urns</a></li>
+            <li><a href="#coffins">Coffins</a></li>
+            <li><a href="#notices">Notices &amp; Donations</a></li>
+            <li><a href="#team">The Team</a></li>
+            <li><a href="#support">Help &amp; Support</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#legal">Privacy &amp; Downloads</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-gold-light);">Connect &amp; Compliance</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">
+            Follow our community updates and funeral notices on social media or view our statutory disclosures:
+          </p>
+          <div style="display:flex; gap: 0.75rem; flex-wrap:wrap; margin-bottom: 1.25rem;">
+            <a href="https://www.facebook.com/CromerandDistrictFunerals/" target="_blank" rel="noopener" class="btn btn-glass" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;">Facebook</a>
+            <a href="#legal" class="btn btn-glass" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;">Privacy Policy</a>
+            <a href="#legal" class="btn btn-glass" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;">Information &amp; Downloads</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© Cromer and District Funeral Services 2026. All rights reserved.</span>
+        <span>32 West Street, Cromer, Norfolk, NR27 9DS</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive SPA Router & Filtering Script -->
+  <script>
+    const validPages = [
+      'home', 'about', 'services', 'packages', 'plans',
+      'caskets', 'coffins', 'notices', 'team', 'support',
+      'contact', 'legal'
+    ];
+
+    function navigateTo(pageId) {
+      if (!validPages.includes(pageId)) pageId = 'home';
+
+      // Toggle active section
+      document.querySelectorAll('.page-section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const targetSec = document.getElementById('page-' + pageId);
+      if (targetSec) targetSec.classList.add('active');
+
+      // Toggle active nav link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-page') === pageId);
+      });
+
+      // Close mobile menu if open
+      document.getElementById('primaryNav').classList.remove('open');
+
+      // Update URL hash cleanly
+      if (window.location.hash !== '#' + pageId) {
+        history.pushState(null, null, '#' + pageId);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('primaryNav').classList.toggle('open');
+    }
+
+    // Filter Caskets, Urns & Scatter Tubes
+    function filterCaskets(category, btnEl) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+
+      document.querySelectorAll('.casket-item').forEach(item => {
+        const itemCat = item.getAttribute('data-cat');
+        item.style.display = (category === 'all' || itemCat === category) ? 'block' : 'none';
+      });
+    }
+
+    // Filter Funeral Notices
+    function filterNotices() {
+      const q = document.getElementById('noticeSearch').value.toLowerCase().trim();
+      document.querySelectorAll('.notice-card').forEach(card => {
+        const name = card.getAttribute('data-name') || '';
+        card.style.display = name.includes(q) ? 'block' : 'none';
+      });
+    }
+
+    // Handle Contact Form Submission (mailto fallback for static GitHub Pages)
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value || 'Website Enquiry';
+      const message = document.getElementById('message').value;
+
+      const mailtoBody = encodeURIComponent(
+        `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
+      );
+      window.location.href = `mailto:info@cromeranddistrictfunerals.co.uk?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
+
+      const feedback = document.getElementById('formFeedback');
+      feedback.textContent = 'Thank you. Your email client has been opened to send your message directly to info@cromeranddistrictfunerals.co.uk.';
+      feedback.style.display = 'block';
+    }
+
+    // Listen to hash changes (Back/Forward browser buttons & anchor links)
+    window.addEventListener('hashchange', () => {
+      const page = window.location.hash.replace('#', '') || 'home';
+      navigateTo(page);
+    });
+
+    // Initialise on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const initialPage = window.location.hash.replace('#', '') || 'home';
+      navigateTo(initialPage);
+    });
+  </script>
+</body>
+</html>
