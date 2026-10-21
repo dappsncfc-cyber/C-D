@@ -306,6 +306,104 @@
             background: rgba(175, 74, 204, 0.6);
         }
 
+
+        /* Casket Image Container & Lightbox Styles */
+        .casket-image-container {
+            height: 240px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 0;
+            border-bottom: 1px solid rgba(243, 232, 245, 0.8);
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+        }
+
+        #lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content-box {
+            position: relative;
+            width: 90%;
+            max-width: 420px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .zoom-viewport {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 12px;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .zoom-viewport:active {
+            cursor: grabbing;
+        }
+
+        #lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            user-select: none;
+            pointer-events: none;
+            transform-origin: center center;
+            transition: transform 0.1s ease-out;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .zoom-btn {
+            background: #f3e8f5;
+            color: #af4acc;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .zoom-btn:hover {
+            background: #af4acc;
+            color: white;
+        }
+
+        .fade-out { opacity: 0; }
+
         @media (max-width: 768px) {
             .footer-logo {
                 max-height: 140px;
@@ -366,6 +464,171 @@
             }
         }
 
+
+        // Modal Controls for Caskets & Urns Selection Pop-up
+        function openCasketsModal() {
+            const modal = document.getElementById('caskets-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeCasketsModal() {
+            const modal = document.getElementById('caskets-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // --- Zoom Logic State ---
+        let scale = 1;
+        let pointX = 0;
+        let pointY = 0;
+        let start = { x: 0, y: 0 };
+        let isPanning = false;
+
+        function updateTransform() {
+            const zoomImg = document.getElementById('lightbox-img');
+            if (zoomImg) {
+                zoomImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+            }
+        }
+
+        function changeZoom(delta) {
+            const nextScale = Math.min(Math.max(1, scale + delta), 5);
+            if (nextScale === scale) return;
+            scale = nextScale;
+            if (scale === 1) {
+                pointX = 0;
+                pointY = 0;
+            }
+            updateTransform();
+        }
+
+        function resetZoom() {
+            scale = 1;
+            pointX = 0;
+            pointY = 0;
+            updateTransform();
+        }
+
+        function initZoomViewport() {
+            const viewport = document.getElementById('zoom-viewport');
+            if (!viewport) return;
+
+            viewport.onwheel = function(e) {
+                e.preventDefault();
+                const xs = (e.clientX - viewport.getBoundingClientRect().left - pointX) / scale;
+                const ys = (e.clientY - viewport.getBoundingClientRect().top - pointY) / scale;
+                const delta = -e.deltaY;
+
+                const nextScale = Math.min(Math.max(1, scale + (delta > 0 ? 0.1 : -0.1)), 5);
+
+                pointX = e.clientX - viewport.getBoundingClientRect().left - xs * nextScale;
+                pointY = e.clientY - viewport.getBoundingClientRect().top - ys * nextScale;
+                scale = nextScale;
+
+                if (scale === 1) {
+                    pointX = 0;
+                    pointY = 0;
+                }
+                updateTransform();
+            };
+
+            viewport.onmousedown = function(e) {
+                if (scale === 1) return;
+                e.preventDefault();
+                start = { x: e.clientX - pointX, y: e.clientY - pointY };
+                isPanning = true;
+            };
+
+            window.onmousemove = function(e) {
+                if (!isPanning) return;
+                pointX = e.clientX - start.x;
+                pointY = e.clientY - start.y;
+                updateTransform();
+            };
+
+            window.onmouseup = function() {
+                isPanning = false;
+            };
+        }
+
+        // --- Lightbox Functions ---
+        function openLightbox(element, title) {
+            const modal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            const sourceImg = element.querySelector('img');
+
+            if (sourceImg && lightboxImg && caption && modal) {
+                lightboxImg.src = sourceImg.src;
+                caption.textContent = title;
+
+                resetZoom();
+
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // --- Image Ticker Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initZoomViewport();
+
+            const tickerImg = document.getElementById('scatter-ticker');
+            if (!tickerImg) return;
+
+            const images = [
+                "https://static.wixstatic.com/media/37dc30_6b6bc1a7228b4e0681bb95c2a5b3977f~mv2.png",
+                "https://static.wixstatic.com/media/37dc30_186e4aba24bf497a89d289f527b7245d~mv2.png",
+                "https://static.wixstatic.com/media/37dc30_68a8a9ffe59742e08db4aec4306dba9c~mv2.png",
+                "https://static.wixstatic.com/media/37dc30_f87dd6d40c18485a9de112597793d4eb~mv2.png",
+                "https://static.wixstatic.com/media/37dc30_fdb09c59df2348be93839bb72ee820ba~mv2.png",
+                "https://static.wixstatic.com/media/37dc30_a01e5451dddf4d128aafd568043c3c4a~mv2.png",
+                "https://static.wixstatic.com/media/37dc30_4151f79200f5478eb4cc38fc1be9689f~mv2.png"
+            ];
+
+            let currentIndex = 0;
+
+            function updateTicker() {
+                const modal = document.getElementById('lightbox-modal');
+                const isTickerInLightbox = modal && modal.classList.contains('active') && document.getElementById('lightbox-caption') && document.getElementById('lightbox-caption').textContent === 'Scatter Tubes & Pods';
+
+                tickerImg.classList.add('fade-out');
+
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    const newSrc = images[currentIndex];
+                    tickerImg.src = newSrc;
+
+                    if (isTickerInLightbox) {
+                        document.getElementById('lightbox-img').src = newSrc;
+                    }
+
+                    tickerImg.classList.remove('fade-out');
+                }, 800);
+            }
+
+            setInterval(updateTicker, 4000);
+        });
+
         function closeCoffinsModal() {
             const modal = document.getElementById('coffins-modal');
             if (modal) {
@@ -378,9 +641,11 @@
         // Close on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                closeLightbox();
                 closeTeamModal();
                 closePackagesModal();
                 closeCoffinsModal();
+                closeCasketsModal();
             }
         });
     </script>
@@ -417,7 +682,7 @@
                         <div class="absolute left-0 mt-2 w-64 glass-panel rounded-2xl shadow-xl border border-white/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
                             <button type="button" onclick="openPackagesModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Funeral Packages and Costs</button>
                             <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Funeral Plans</a>
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Caskets and Urns</a>
+                            <button type="button" onclick="openCasketsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Caskets and Urns</button>
                             <button type="button" onclick="openCoffinsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Coffins</button>
                         </div>
                     </div>
@@ -451,7 +716,7 @@
                     <div class="pl-3 border-l-2 border-purple-300 space-y-1 text-sm mt-1">
                         <button type="button" onclick="openPackagesModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Funeral Packages and Costs</button>
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block py-1.5 hover:text-purple-700">Funeral Plans</a>
-                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block py-1.5 hover:text-purple-700">Caskets and Urns</a>
+                        <button type="button" onclick="openCasketsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Caskets and Urns</button>
                         <button type="button" onclick="openCoffinsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Coffins</button>
                     </div>
                 </div>
@@ -565,7 +830,7 @@
                         <h3 class="text-2xl font-bold text-slate-900 mb-2 uppercase tracking-widest">Ashes Caskets</h3>
                         <p class="text-xs text-slate-500 mb-6 font-medium text-center">Caskets, Urns and Scatter Tubes</p>
                     </div>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">View Selection</a>
+                    <button type="button" onclick="openCasketsModal()" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md cursor-pointer">View Selection</button>
                 </div>
             </div>
 
@@ -1503,6 +1768,471 @@
                 <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
             </div>
 
+        </div>
+    </div>
+
+
+    <!-- Glassmorphic Pop-Up Modal: Caskets & Urns Selection -->
+    <div id="caskets-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeCasketsModal()">
+        <div class="glass-modal relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 text-slate-800 custom-scrollbar my-auto">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closeCasketsModal()" class="sticky top-0 float-right z-30 w-10 h-10 -mt-2 -mr-2 sm:-mt-4 sm:-mr-4 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Title Section -->
+            <div class="max-w-4xl mx-auto text-center pt-2 mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Ashes Caskets & Urns</h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto italic serif leading-relaxed">
+                    "A dignified selection of resting places for your loved one's ashes."
+                </p>
+            </div>
+
+            <!-- Casket & Urn Grid (Ordered Low to High by Price) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-16">
+
+                <!-- 1. Scatter Tubes & Pods (£10.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Scatter Tubes & Pods')">
+                        <img id="scatter-ticker"
+                             src="https://static.wixstatic.com/media/37dc30_6b6bc1a7228b4e0681bb95c2a5b3977f~mv2.png"
+                             alt="Scatter Tubes"
+                             class="package-image transition-opacity duration-800"
+                             referrerpolicy="no-referrer">
+                        <div class="absolute bottom-2 right-2 bg-white/80 px-2 py-1 rounded text-[10px] text-slate-500 font-bold uppercase tracking-widest shadow-sm">Multiple Designs</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Scatter Tubes & Pods</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £10.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Biodegradable cardboard scatter tubes available in Adult, Child, and Keepsake sizes. Available in a wide variety of tranquil designs and themes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Urn Ring Handle (£17.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Urn Ring Handle')">
+                        <img src="https://static.wixstatic.com/media/37dc30_e3a5c4800c8d42f28b7bd1a0d229d1c6~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Urn Ring Handle"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Urn Ring Handle</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £17.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Cast Urn Ring handle in Electro Brass for wooden ashes caskets. Note: All handles are sold separately.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Drop Pendant Handle (£17.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Drop Pendant Handle')">
+                        <img src="https://static.wixstatic.com/media/37dc30_cff1e500150c4ab0a1edf46d35475f48~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Drop Pendant Handle"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Drop Pendant Handle</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £17.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Metal drop handle with an antique brass finish. Note: All handles are sold separately.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Bamboo (£65.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Bamboo Casket')">
+                        <img src="https://static.wixstatic.com/media/37dc30_46fc9254f20548cda54f0ddd855f4bae~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Bamboo Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Bamboo</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £65.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Natural ashes casket made from Bamboo, one of the fastest growing plants on earth. 100% natural and biodegradable.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. Vault Box (£75.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Vault Box')">
+                        <img src="https://static.wixstatic.com/media/37dc30_287bb845d34c492cb52da0af5982e329~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Vault Box"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Vault Box</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £75.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A solid oak vault box for ashes, providing a robust and traditional resting place for burial.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Seagrass (£75.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Seagrass Casket')">
+                        <img src="https://static.wixstatic.com/media/37dc30_21eb879ce7b2464eb3d6f473b234670a~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Seagrass Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Seagrass</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £75.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Natural ashes casket hand-woven from seagrass for an environmentally friendly tribute.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 7. Willow (£75.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Willow Casket')">
+                        <img src="https://static.wixstatic.com/media/37dc30_bd37f397efbe41d488ca6d316c6222ad~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Willow Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Willow</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £75.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Natural ashes casket expertly hand-woven from sustainable willow. A soft, traditional look.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 8. Kent Solid Oak (£80.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Kent Solid Oak')">
+                        <img src="https://static.wixstatic.com/media/37dc30_4c77977881604fdf8580ae6a112b00bd~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Kent Solid Oak Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Kent Solid Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £80.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A beautifully crafted solid oak ashes casket with a clean, classic finish and simple lines.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 9. Norfolk Solid Oak (£85.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Norfolk Solid Oak')">
+                        <img src="https://static.wixstatic.com/media/37dc30_d76856ddb3ef4d78863f7a5d88732006~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Norfolk Solid Oak Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Norfolk Solid Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £85.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Solid Oak casket available in Utile and Oak Stained finishes, named for our local region.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 10. Surrey Solid Oak (£90.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Surrey Solid Oak')">
+                        <img src="https://static.wixstatic.com/media/37dc30_d5879f0c9c2a4759849414a3b62bac9e~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Surrey Solid Oak Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Surrey Solid Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £90.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Solid Oak casket available in Veneered Oak, Utile & Sapele finishes with a stepped lid design.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 11. Essex Solid (£95.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Essex Solid')">
+                        <img src="https://static.wixstatic.com/media/37dc30_519954d1c4524f36989aa8c09f9bcdce~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Essex Solid Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Essex Solid</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £95.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A premium solid casket available in Oak & Utile finishes with elegant moulding.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 12. Knotty Oak (£95.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Knotty Oak')">
+                        <img src="https://static.wixstatic.com/media/37dc30_afd35ce6506b45c79b7b7322aa309f2a~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Knotty Oak Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Knotty Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £95.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Featuring natural characteristics of the wood for a rustic and authentic aesthetic. No two are exactly alike.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 13. Bronze or Aluminium (£170.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Bronze or Aluminium Urn')">
+                        <img src="https://static.wixstatic.com/media/37dc30_f77ed10c0564466a9987eaa45d6f9a2e~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Bronze or Aluminium Urn"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Bronze or Aluminium</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £170.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Elegant metal urns available in both Bronze or Aluminium finishes. Durable and timeless.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 14. Althorp Red (£170.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Althorp Red')">
+                        <img src="https://static.wixstatic.com/media/37dc30_67e2bdcecf06423bb4b4f82156567492~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Althorp Red Urn"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Althorp Red</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £170.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A sophisticated urn featuring a deep red finish and intricate silver-toned detailing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 15. Devon Gold (£170.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Devon Gold')">
+                        <img src="https://static.wixstatic.com/media/37dc30_dc1cd6c579a14a85896ffa54a2fc5480~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Devon Gold Urn"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Devon Gold</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £170.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A warm and distinguished urn with a gold finish and traditional patterning.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 16. Banbury Brass (£170.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Banbury Brass')">
+                        <img src="https://static.wixstatic.com/media/37dc30_09efd4d93c254ce88b4b84be41b1d9a0~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Banbury Brass Urn"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Banbury Brass</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £170.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Classic brass urn with an intricate engraved design and a high-polish finish.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 17. Farnham Flowers (£170.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Farnham Flowers')">
+                        <img src="https://static.wixstatic.com/media/37dc30_6c31d6f5f6d14c6b95c203831527f5f6~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Farnham Flowers Urn"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Farnham Flowers</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £170.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A beautiful urn adorned with delicate floral patterns for a softer, nature-inspired tribute.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 18. Gloucester Pewter (£170.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Gloucester Pewter')">
+                        <img src="https://static.wixstatic.com/media/37dc30_1f8740af341b46c5a19d0d5fc119e2e2~mv2.jpg"
+                             referrerpolicy="no-referrer"
+                             alt="Gloucester Pewter Urn"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Gloucester Pewter</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £170.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A timeless urn with a pewter finish and traditional celtic-style engraving around the band.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 19. Bluebell Wood (£200.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Bluebell Wood')">
+                        <img src="https://static.wixstatic.com/media/37dc30_f579b635a9084d23a2ff422d7e8a6d40~mv2.jpg"
+                             referrerpolicy="no-referrer"
+                             alt="Bluebell Wood Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Bluebell Wood</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £200.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Contemporary picture ashes casket featuring a serene bluebell wood scene for a vivid, modern memorial.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 20. Rose, Iris & Butterfly (£200.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Rose, Iris & Butterfly')">
+                        <img src="https://static.wixstatic.com/media/37dc30_ffb654be32d74809bc1cb9cd40089440~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Rose, Iris & Butterfly Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Rose, Iris & Butterfly</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £200.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Contemporary picture ashes casket with a beautiful, high-definition floral and butterfly design.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 21. Winter Scene (£200.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="casket-image-container" onclick="openLightbox(this, 'Winter Scene')">
+                        <img src="https://static.wixstatic.com/media/37dc30_8b555784a203455aa20f20a097b37d07~mv2.png"
+                             referrerpolicy="no-referrer"
+                             alt="Winter Scene Casket"
+                             class="package-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Winter Scene</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £200.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Contemporary picture ashes casket featuring a tranquil winter landscape and forest imagery.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bespoke Information Section -->
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-white/80 max-w-4xl mx-auto text-center shadow-sm mb-8">
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">Bespoke Options</h3>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Our selection of ashes caskets and urns is designed to provide a fitting final tribute. Many of our items can be further personalised or ordered in specific designs. Please speak with your Funeral Director to discuss any bespoke requirements or for guidance on selecting the most appropriate memorial for your loved one.
+                </p>
+            </div>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Lightbox Modal - Fixed to Viewport for zooming casket/urn images -->
+    <div id="lightbox-modal">
+        <!-- Overlay Click Area -->
+        <div class="absolute inset-0" onclick="closeLightbox()"></div>
+
+        <div class="lightbox-content-box glass-modal relative z-10 p-4 sm:p-6 rounded-2xl max-w-md w-full flex flex-col items-center shadow-2xl">
+            <button onclick="closeLightbox()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-900 text-2xl z-10 focus:outline-none" aria-label="Close Lightbox">&times;</button>
+
+            <h4 id="lightbox-caption" class="text-lg font-bold text-slate-800 mb-3 serif text-center"></h4>
+
+            <div class="zoom-viewport w-full h-[280px] sm:h-[320px] overflow-hidden relative bg-white border border-slate-100 rounded-lg cursor-grab flex items-center justify-center" id="zoom-viewport">
+                <img id="lightbox-img" src="" alt="Zoomed View" referrerpolicy="no-referrer">
+            </div>
+
+            <div class="zoom-controls">
+                <button onclick="changeZoom(-0.25)" class="zoom-btn" title="Zoom Out"><i class="fas fa-minus"></i></button>
+                <button onclick="resetZoom()" class="zoom-btn" title="Reset Zoom"><i class="fas fa-sync-alt"></i></button>
+                <button onclick="changeZoom(0.25)" class="zoom-btn" title="Zoom In"><i class="fas fa-plus"></i></button>
+            </div>
+
+            <p class="text-[9px] text-slate-400 mt-3 uppercase tracking-widest text-center">Scroll to zoom • Drag to move</p>
         </div>
     </div>
 
