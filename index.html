@@ -435,6 +435,25 @@
             }
         }
 
+        // Modal Controls for Funeral Plans Pop-up
+        function openPlansModal() {
+            const modal = document.getElementById('plans-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePlansModal() {
+            const modal = document.getElementById('plans-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
         // Modal Controls for Funeral Packages Pop-up
         function openPackagesModal() {
             const modal = document.getElementById('packages-modal');
@@ -646,6 +665,7 @@
                 closePackagesModal();
                 closeCoffinsModal();
                 closeCasketsModal();
+                closePlansModal();
             }
         });
     </script>
@@ -681,7 +701,7 @@
                         </button>
                         <div class="absolute left-0 mt-2 w-64 glass-panel rounded-2xl shadow-xl border border-white/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
                             <button type="button" onclick="openPackagesModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Funeral Packages and Costs</button>
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Funeral Plans</a>
+                            <button type="button" onclick="openPlansModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Funeral Plans</button>
                             <button type="button" onclick="openCasketsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Caskets and Urns</button>
                             <button type="button" onclick="openCoffinsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Coffins</button>
                         </div>
@@ -715,7 +735,7 @@
                     <span class="font-semibold text-slate-900 block mb-1">Services</span>
                     <div class="pl-3 border-l-2 border-purple-300 space-y-1 text-sm mt-1">
                         <button type="button" onclick="openPackagesModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Funeral Packages and Costs</button>
-                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block py-1.5 hover:text-purple-700">Funeral Plans</a>
+                        <button type="button" onclick="openPlansModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Funeral Plans</button>
                         <button type="button" onclick="openCasketsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Caskets and Urns</button>
                         <button type="button" onclick="openCoffinsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Coffins</button>
                     </div>
@@ -846,7 +866,7 @@
                             Talking about death isn’t easy. With a funeral plan in place, you ensure you get the send-off you really want while protecting your family from emotional and financial burden.
                         </p>
                     </div>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="text-purple-700 font-bold hover:underline">Learn More About Plans &rarr;</a>
+                    <button type="button" onclick="openPlansModal()" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md cursor-pointer">Learn More About Plans</button>
                 </div>
             </div>
 
@@ -952,6 +972,79 @@
         </div>
     </footer>
 
+
+    <!-- Glassmorphic Pop-Up Modal: Funeral Plans -->
+    <div id="plans-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closePlansModal()">
+        <div class="glass-modal relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 text-slate-800 custom-scrollbar my-auto">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closePlansModal()" class="sticky top-0 float-right z-30 w-10 h-10 -mt-2 -mr-2 sm:-mt-4 sm:-mr-4 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Header Section -->
+            <div class="max-w-4xl mx-auto text-center pt-2 mb-10">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Funeral Plans</h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 rounded-full"></div>
+            </div>
+
+            <!-- Content Body -->
+            <div class="mb-10 text-left">
+                <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-6">
+                    A funeral plan is an easy way to arrange the funeral you want in advance. A plan allows you to specify your wishes and pay for the funeral director’s services included in your plan. As customers often tell us, that can bring peace of mind to you and your family.
+                </p>
+                <p class="text-base sm:text-lg text-slate-700 leading-relaxed">
+                    A plan from Golden Charter also includes an allowance towards third party costs. These are essential, non-funeral director services such as the cremation or burial fees, plus the minister or officiant’s fee to perform the service. The value of the allowance included in your plan may grow over time. There will only be more to pay at the time of the funeral if the third party costs exceed the allowance when you buy your plan, or if the costs increase by more than the growth of your plan.
+                </p>
+            </div>
+
+            <div class="mb-12 overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+                <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_a12dd6fd24624cf495cee45f5f27be80~mv2.jpg&w=1200&output=webp&q=80"
+                     alt="Planning for the future"
+                     class="w-full h-auto block">
+            </div>
+
+            <div class="bg-slate-50/80 rounded-2xl p-6 sm:p-8 mb-12 border-l-4 border-[#af4acc] text-left">
+                <p class="text-slate-700 leading-relaxed">
+                    At Cromer and District Independent Funeral Services LTD, we work in partnership with Golden Charter to provide you with a simple way to plan ahead. As one of the UK’s largest funeral plan providers<sup>1</sup>, Golden Charter has helped over 1 million people to plan ahead<sup>2</sup>, so we’re completely confident in offering their plans to you.
+                </p>
+            </div>
+
+            <div class="mb-12 text-left">
+                <p class="text-slate-700 leading-relaxed">
+                    Everyone has different needs when it comes to funeral planning, so we make sure the plans we offer are as flexible as possible. When you get in touch, we’ll be happy to discuss your funeral requirements and tailor a plan to suit you. Rest assured a plan from Golden Charter is available to all UK residents, regardless of age or state of health.
+                </p>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center bg-slate-900 text-white rounded-2xl p-8 md:p-10 mb-12">
+                <p class="text-slate-300 mb-8 max-w-2xl mx-auto">
+                    Would you like to know more information about how a Golden Charter funeral plan could work for you? We can provide you with all of the information you need to make an informed decision for you and your family, so get in touch today!
+                </p>
+                <a href="https://www.cromeranddistrictfunerals.co.uk/contact" target="_top" class="inline-block accent-bg hover:bg-purple-700 text-white font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                    Speak with our team
+                </a>
+            </div>
+
+            <!-- Legal Disclosures -->
+            <div class="pt-8 border-t border-gray-200/80 text-xs text-slate-500 space-y-3 text-left mb-6">
+                <p>1 Based on a Golden Charter analysis and independent research of the funeral plan market size as at December 2024.</p>
+                <p>2 Correct at July 2025.</p>
+                <p class="italic">
+                    Cromer and District Independent Funeral Services LTD is an appointed representative of Golden Charter Limited trading as Golden Charter Funeral Plans which is authorised and regulated by the Financial Conduct Authority (FRN:965279).
+                </p>
+                <p class="font-medium">
+                    Cromer and District Independent Funeral Services LTD trading as Cromer and District Independent Funeral Services LTD is an appointed representative of Golden Charter Limited trading as Golden Charter Funeral Plans which is authorised and regulated by the Financial Conduct Authority (FRN:965279).
+                </p>
+            </div>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Glassmorphic Pop-Up Modal: Meet The Team -->
     <div id="team-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeTeamModal()">
