@@ -136,6 +136,75 @@
 </head>
 <body class="bg-gray-50">
 
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/')">
+                    <img class="h-14 w-auto object-contain" src="https://static.wixstatic.com/media/37dc30_de0c1220abc94141913e8a3ee08d7d42~mv2.png/v1/fill/w_100,h_100,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/C%26D%20LOGO.png" alt="C&D Logo">
+                    <span class="serif font-bold text-slate-800 text-sm sm:text-base md:text-lg uppercase tracking-wider hidden sm:inline-block leading-snug">
+                        Cromer & District<br><span class="text-xs text-slate-500 font-sans tracking-normal font-normal">Independent Funeral Services</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-700">
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/')" class="hover:text-purple-700 transition-colors py-2">Home</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/aboutus')" class="hover:text-purple-700 transition-colors py-2">About Us</a>
+
+                    <!-- Services Dropdown -->
+                    <div class="relative group py-2">
+                        <button class="flex items-center gap-1 hover:text-purple-700 transition-colors focus:outline-none">
+                            <span>Services</span>
+                            <i class="fas fa-chevron-down text-xs text-slate-400 group-hover:text-purple-700 transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Funeral Packages and Costs</a>
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Funeral Plans</a>
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Caskets and Urns</a>
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Coffins</a>
+                        </div>
+                    </div>
+
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="hover:text-purple-700 transition-colors py-2">Funeral Notices & Donations</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/theteam-1')" class="hover:text-purple-700 transition-colors py-2">The Team</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="hover:text-purple-700 transition-colors py-2">Help & Support</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="hover:text-purple-700 transition-colors py-2">Contact Us</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 rounded-md text-slate-600 hover:text-purple-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="lg:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-base font-medium text-slate-700">
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Home</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/aboutus')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">About Us</a>
+                <div class="px-3 py-2">
+                    <span class="font-semibold text-slate-900 block mb-1">Services</span>
+                    <div class="pl-3 border-l-2 border-purple-200 space-y-1 text-sm mt-1">
+                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="block py-1.5 hover:text-purple-700">Funeral Packages and Costs</a>
+                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block py-1.5 hover:text-purple-700">Funeral Plans</a>
+                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block py-1.5 hover:text-purple-700">Caskets and Urns</a>
+                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block py-1.5 hover:text-purple-700">Coffins</a>
+                    </div>
+                </div>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Funeral Notices & Donations</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/theteam-1')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">The Team</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Help & Support</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
     <!-- Hero Section -->
     <section class="hero-container">
         <video class="hero-video" autoplay muted loop playsinline poster="https://static.wixstatic.com/media/37dc30_fcdb412e571e49219525ac13a4225f4bf000.jpg">
