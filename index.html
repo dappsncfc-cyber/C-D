@@ -229,6 +229,37 @@
             display: inline-block;
         }
 
+        /* Coffin Card Styles */
+        .coffin-image-container {
+            height: 220px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(243, 232, 245, 0.8);
+            overflow: hidden;
+        }
+        .coffin-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        .package-card:hover .coffin-image {
+            transform: scale(1.06);
+        }
+        .description-box {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 4.5em;
+            line-height: 1.5em;
+        }
+
         /* Gallery Styles */
         .gallery-item {
             aspect-ratio: 1/1;
@@ -325,11 +356,31 @@
             }
         }
 
+        // Modal Controls for Coffins Selection Pop-up
+        function openCoffinsModal() {
+            const modal = document.getElementById('coffins-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeCoffinsModal() {
+            const modal = document.getElementById('coffins-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
         // Close on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeTeamModal();
                 closePackagesModal();
+                closeCoffinsModal();
             }
         });
     </script>
@@ -367,7 +418,7 @@
                             <button type="button" onclick="openPackagesModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Funeral Packages and Costs</button>
                             <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Funeral Plans</a>
                             <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Caskets and Urns</a>
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Coffins</a>
+                            <button type="button" onclick="openCoffinsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Coffins</button>
                         </div>
                     </div>
 
@@ -401,7 +452,7 @@
                         <button type="button" onclick="openPackagesModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Funeral Packages and Costs</button>
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block py-1.5 hover:text-purple-700">Funeral Plans</a>
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block py-1.5 hover:text-purple-700">Caskets and Urns</a>
-                        <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block py-1.5 hover:text-purple-700">Coffins</a>
+                        <button type="button" onclick="openCoffinsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Coffins</button>
                     </div>
                 </div>
                 <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Funeral Notices & Donations</a>
@@ -500,7 +551,7 @@
                 </div>
                 <div class="p-8 flex-grow text-center flex flex-col justify-between">
                     <h3 class="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-widest">Coffin Range</h3>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">Browse Selection</a>
+                    <button type="button" onclick="openCoffinsModal()" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md cursor-pointer">Browse Selection</button>
                 </div>
             </div>
 
@@ -808,6 +859,398 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Glassmorphic Pop-Up Modal: Our Coffin Selection -->
+    <div id="coffins-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeCoffinsModal()">
+        <div class="glass-modal relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 text-slate-800 custom-scrollbar my-auto">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closeCoffinsModal()" class="sticky top-0 float-right z-30 w-10 h-10 -mt-2 -mr-2 sm:-mt-4 sm:-mr-4 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Title Section -->
+            <div class="max-w-4xl mx-auto text-center pt-2 mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Our Coffin Selection</h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto italic serif leading-relaxed">
+                    "A respectful range of coffins crafted to provide a fitting tribute."
+                </p>
+            </div>
+
+            <!-- Coffin Grid (Ordered Low to High by Price) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-16">
+
+                <!-- 1. Lamboard Oak (£210.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_b8655ec98a0243b2b4657eedc9b0cb5e~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Lamboard Oak Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Lamboard Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £210.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high-quality lamboard and trimmed with single mouldings. A respectful and simple option for families.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Walnut (£250.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_ccea3544233c47bba522deaa39c64aa4~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Walnut Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Walnut</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £250.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using simulated Walnut veneer and trimmed with single mouldings shown fitted with Yorkrem handles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Rockwood Elm (£250.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_97ae97d1635a400fbfa929cfadede190~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Rockwood Elm Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Rockwood Elm</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £250.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using simulated oak veneer and trimmed with single mouldings. Shown fitted with garrell handles and wreath holders.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Oak Veneered (£275.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_e56c0ec12b1b47bebe6987edd12d7ab3~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Oak Veneered Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Oak Veneered</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £275.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high-quality oak veneer and trimmed with single mouldings. Shown fitted with fleur handles and bell tops.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. Elm Veneered (£275.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_868f6197f1034be1aeeefc9c85fca52e~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Elm Veneered Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Elm Veneered</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £275.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high-quality elm veneer and trimmed with single mouldings. Shown fitted with yorkcrem handles and bell tops.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Oak Dark Stained (£275.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_2bd0a171201b4b7abd840cd09334e7aa~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Oak Dark Stained Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Oak Dark Stained</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £275.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high-quality oak veneer with a dark stain and trimmed with single mouldings. Shown fitted with no.12 ring handles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 7. Knotty Oak Veneered (£400.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_54a27d2814cd469eb4bfbac7347d7fe8~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Knotty Oak Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Knotty Oak Veneered</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £400.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high quality knotty oak veneer with a honey stain and trimmed with double half round mouldings. Shown with bar handles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 8. Cardboard Coffin (£400.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_359b87899cdb4acb89e2e776cf882aa6~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Cardboard Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Cardboard Coffin</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £400.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            An environmentally conscious choice. Suitable for both burial and cremation. Lightweight and simple design for natural farewells.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 9. Wicker (£450.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_e9cc04c15bf349b3ac2c0d80272980ba~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Wicker Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Wicker</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £450.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A beautifully natural woven coffin supplied with a soft natural fabric lining, ply name plate and rope handles. Plastic and metal free.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 10. Brinkley Oak (£450.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_bebcedc0b6c743eab712db109bcf684d~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Brinkley Oak Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Brinkley Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £450.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high quality oak veneer with routed panels, a raised lid and trimmed with double mouldings. Shown with oscar bar handles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 11. Sapele Veneered (£500.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_07cd7c14484f4d5db55718e831c0f2f0~mv2.jpg" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Sapele Veneered Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Sapele Veneered</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £500.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high-quality Sapele veneer and trimmed with single mouldings shown fitted with 300/7 handles and wreath holders.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 12. Picture Coffins (£500.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_7025c7f211254738ae72dbd7a817d869~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Picture Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Picture Coffins</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £500.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Printed picture coffin available in a range of contemporary designs, celebrating a loved one's unique life and interests.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 13. Solid Pine (£530.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_66038b4c74c540f0bf4f24fd15c54be7~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Solid Pine Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Solid Pine</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £530.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using Scandinavian redwood and trimmed with single mouldings. Shown fitted with rope handles and wooden bell tops.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 14. Seagrass Coffin (£540.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_c765122d8f694a12bfde2e2d237a8e08~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Seagrass Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Seagrass Coffin</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £540.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Hand-woven from natural seagrass, providing a unique and soft aesthetic for a natural and peaceful farewell.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 15. Bamboo (£540.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_4a48f634a5b647fc8231c0e913ba46ab~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Bamboo Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Bamboo</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £540.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Bamboo is the fastest growing plant on earth and is 100% natural and biodegradable. Supplied with a fitted liner.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 16. Various Colours (£550.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_c776134a14e547638d95bf718c3691ae~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Various Coloured Coffins" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Various Colours</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £550.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            MDF coffin sprayed white and trimmed with single mouldings shown fitted with Fleur handles in Nickel Plate. Available in many colours.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 17. Willow Pod Coffin (£550.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_a6ac2d22dcab4234a658cda1b55f3708~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Willow Pod Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Willow Pod Coffin</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £550.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            A beautifully hand-woven willow pod, offering a softer, more rounded aesthetic for a natural and organic tribute.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 18. Willow Coffin (£550.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_836861191a3d4f4f95b66a57ca237f48~mv2.jpg" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Willow Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Willow Coffin</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £550.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Expertly hand-woven from natural willow, offering an organic and environmentally friendly tribute for your loved one.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 19. Named Chiltern Oak (£600.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_5bcb63a76cac407fa3ed32fee2c627ea~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Named Chiltern Oak Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Named Chiltern Oak</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £600.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Almost any coffin or casket in our range can be personalised with a loved one's name or relationship on the side panels.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 20. Painted Named Coffins (£600.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_c2af019bf4f74432b479e1cad11ac19f~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Painted Named Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Painted Named Coffins</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £600.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            MDF coffin sprayed pale blue and trimmed with single mouldings and engraved name on the sides. Shown with fleur handles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 21. Cavendish Oak Solid (£1,000.00) -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_dc8b8cd6039646159517c4475393be19~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Cavendish Oak Solid Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Cavendish Oak Solid</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £1,000.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high quality solid oak with routed panels, a raised lid and trimmed with double mouldings. Shown with bar handles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 22. Windsor Oak Triple Solid (£1,175.00) - Centralised -->
+                <div class="package-card glass-card rounded-3xl overflow-hidden lg:col-start-2">
+                    <div class="coffin-image-container">
+                        <img src="https://static.wixstatic.com/media/37dc30_a370c5124039431cbf20e052a4f897fa~mv2.png" onerror="this.src='https://images.unsplash.com/photo-1544158428-3e4b3970b411?q=80&w=800'" alt="Windsor Oak Triple Solid Coffin" class="coffin-image">
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-800">Windsor Oak Triple Solid</h3>
+                        <div class="mb-6">
+                            <span class="price-badge text-sm font-bold">From £1,175.00</span>
+                        </div>
+                        <p class="description-box text-sm text-slate-600">
+                            Built using high-quality solid oak and trimmed with triple mouldings and oak stain. Shown fitted with solid brass handles.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bespoke Information Section -->
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-white/80 max-w-4xl mx-auto text-center shadow-sm mb-8">
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">Bespoke Options</h3>
+                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                    Our selection is designed to provide choices for every family. Many of our coffins can be further personalised with specific handles, engravings, or interiors. Please speak with your Funeral Director to discuss any bespoke requirements or for guidance on selecting the most appropriate tribute.
+                </p>
+            </div>
 
             <!-- Modal Footer Note -->
             <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
