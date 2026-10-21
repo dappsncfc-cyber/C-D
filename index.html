@@ -18,17 +18,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        /* Matching the fonts from cromeranddistrictfunerals.co.uk */
-        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@300;400;500;600&display=swap');
+        /* Font imports */
+        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@300;400;500;600;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
             color: #2d3748;
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f3e8f5 100%);
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
         h1, h2, h3, .serif {
             font-family: 'Gilda Display', serif;
@@ -43,7 +45,55 @@
             border-color: #af4acc;
         }
         
-        /* Hero Video Styles - Locked height ensures stability in iframes */
+        /* Glassmorphism utility classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(175, 74, 204, 0.06);
+        }
+
+        .glass-panel-dark {
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.88);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(175, 74, 204, 0.15);
+            border-color: rgba(175, 74, 204, 0.35);
+        }
+
+        .glass-modal {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Hero Video Styles */
         .hero-container {
             position: relative;
             height: 600px;
@@ -54,7 +104,7 @@
             justify-content: center;
             text-align: center;
             color: white;
-            background-color: #000;
+            background-color: #0f172a;
         }
         .hero-video {
             position: absolute;
@@ -63,7 +113,7 @@
             width: 100%;
             height: 100%;
             transform: translate(-50%, -50%);
-            z-index: 1; /* Lowest in stack */
+            z-index: 1;
             object-fit: cover; 
         }
         .hero-overlay {
@@ -72,44 +122,95 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 2; /* Middle */
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.7) 100%);
+            z-index: 2;
         }
         .hero-content {
             position: relative;
-            z-index: 3; /* Highest */
+            z-index: 3;
             padding: 2rem;
         }
 
         /* Services Grid */
         .service-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
             height: 100%;
             will-change: transform;
         }
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px -10px rgba(175, 74, 204, 0.2);
-        }
+
         .image-container {
             height: 260px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #ffffff;
+            background: rgba(255, 255, 255, 0.5);
             padding: 0; 
-            border-bottom: 1px solid #f3e8f5;
+            border-bottom: 1px solid rgba(243, 232, 245, 0.8);
             overflow: hidden;
+            position: relative;
         }
+
         .service-image {
             width: 100%;
             height: 100%;
             object-fit: contain; 
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image {
+            transform: scale(1.04);
         }
         
+        /* Team Grid & Modal Styles */
+        .team-card {
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -10px rgba(175, 74, 204, 0.2);
+            border-color: rgba(175, 74, 204, 0.4);
+        }
+        .team-image-container {
+            aspect-ratio: 4/5;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .team-card:hover .team-image {
+            transform: scale(1.06);
+        }
+
+        /* Gallery Styles */
+        .gallery-item {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 1.25rem;
+            background-color: #f3f4f6;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+
         /* Footer Logo Optimization */
         .footer-logo {
             max-height: 180px; 
@@ -119,6 +220,22 @@
         }
         .footer-logo:hover {
             transform: scale(1.05);
+        }
+
+        /* Custom Scrollbar for Modal */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.6);
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(175, 74, 204, 0.3);
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(175, 74, 204, 0.6);
         }
 
         @media (max-width: 768px) {
@@ -132,12 +249,45 @@
         function navigateTop(url) {
             window.top.location.href = url;
         }
+
+        // Modal Controls for Glassmorphic Team Pop-up
+        function openTeamModal() {
+            const modal = document.getElementById('team-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeTeamModal() {
+            const modal = document.getElementById('team-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTeamModal();
+            }
+        });
     </script>
 </head>
-<body class="bg-gray-50">
+<body class="relative text-slate-800">
 
-    <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <!-- Ambient Glassmorphic Background Glowing Orbs -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-32 w-96 h-96 bg-purple-200/40 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-1/4 w-[30rem] h-[30rem] bg-indigo-100/40 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Glassmorphic Header / Navigation -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-white/60 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
@@ -156,23 +306,26 @@
                             <span>Services</span>
                             <i class="fas fa-chevron-down text-xs text-slate-400 group-hover:text-purple-700 transition-transform group-hover:rotate-180"></i>
                         </button>
-                        <div class="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Funeral Packages and Costs</a>
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Funeral Plans</a>
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Caskets and Urns</a>
-                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">Coffins</a>
+                        <div class="absolute left-0 mt-2 w-64 glass-panel rounded-2xl shadow-xl border border-white/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Funeral Packages and Costs</a>
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Funeral Plans</a>
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Caskets and Urns</a>
+                            <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors">Coffins</a>
                         </div>
                     </div>
 
                     <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="hover:text-purple-700 transition-colors py-2">Funeral Notices & Donations</a>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/theteam-1')" class="hover:text-purple-700 transition-colors py-2">The Team</a>
+
+                    <!-- Team Button opens Glassmorphic Pop-up Modal -->
+                    <button type="button" onclick="openTeamModal()" class="hover:text-purple-700 transition-colors py-2 focus:outline-none">The Team</button>
+
                     <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="hover:text-purple-700 transition-colors py-2">Help & Support</a>
                     <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="hover:text-purple-700 transition-colors py-2">Contact Us</a>
                 </nav>
 
                 <!-- Mobile menu button -->
                 <div class="lg:hidden flex items-center">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 rounded-md text-slate-600 hover:text-purple-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 rounded-xl glass-pill text-slate-700 hover:text-purple-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <i class="fas fa-bars text-xl"></i>
                     </button>
@@ -181,23 +334,23 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="lg:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
+        <div class="lg:hidden hidden glass-panel border-t border-white/50" id="mobile-menu">
             <div class="px-4 pt-2 pb-6 space-y-2 text-base font-medium text-slate-700">
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Home</a>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/aboutus')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">About Us</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Home</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/aboutus')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">About Us</a>
                 <div class="px-3 py-2">
                     <span class="font-semibold text-slate-900 block mb-1">Services</span>
-                    <div class="pl-3 border-l-2 border-purple-200 space-y-1 text-sm mt-1">
+                    <div class="pl-3 border-l-2 border-purple-300 space-y-1 text-sm mt-1">
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="block py-1.5 hover:text-purple-700">Funeral Packages and Costs</a>
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="block py-1.5 hover:text-purple-700">Funeral Plans</a>
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="block py-1.5 hover:text-purple-700">Caskets and Urns</a>
                         <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="block py-1.5 hover:text-purple-700">Coffins</a>
                     </div>
                 </div>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Funeral Notices & Donations</a>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/theteam-1')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">The Team</a>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Help & Support</a>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="block px-3 py-2 rounded-md hover:bg-purple-50 hover:text-purple-700">Contact Us</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Funeral Notices & Donations</a>
+                <button type="button" onclick="openTeamModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">The Team</button>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Help & Support</a>
+                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Contact Us</a>
             </div>
         </div>
     </header>
@@ -209,23 +362,27 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight text-white text-center">
-                A compassionate and caring service in your time of need.
-            </h1>
-            <div class="w-24 h-1 accent-bg mx-auto mb-8 text-center"></div>
+            <div class="glass-panel-dark p-8 md:p-12 rounded-3xl border border-white/20 shadow-2xl backdrop-blur-xl inline-block">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight text-white text-center">
+                    A compassionate and caring service in your time of need.
+                </h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-2 text-center rounded-full"></div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 px-4 bg-white">
+    <section id="about" class="py-24 px-4">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1">
-                <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_67964348f7fc4127ab46f9c9f5bd8e0f~mv2.jpg&w=800&output=webp&q=80" 
-                     alt="Adrian Amis" 
-                     decoding="async"
-                     class="rounded-3xl shadow-2xl w-full object-cover">
+            <div class="order-2 lg:order-1 relative">
+                <div class="glass-card p-3 rounded-3xl overflow-hidden shadow-xl">
+                    <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_67964348f7fc4127ab46f9c9f5bd8e0f~mv2.jpg&w=800&output=webp&q=80"
+                         alt="Adrian Amis"
+                         decoding="async"
+                         class="rounded-2xl shadow-md w-full object-cover">
+                </div>
             </div>
-            <div class="order-1 lg:order-2">
+            <div class="order-1 lg:order-2 glass-panel p-8 sm:p-12 rounded-3xl">
                 <h2 class="text-4xl font-bold text-slate-900 mb-8 leading-snug">Compassion & Experience</h2>
                 <div class="space-y-6 text-slate-600 leading-relaxed text-lg text-left">
                     <p>
@@ -239,7 +396,7 @@
                     </p>
                 </div>
                 <div class="mt-10 flex flex-wrap gap-4">
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/aboutus')" class="px-8 py-3 border-2 accent-border accent-text rounded-full font-bold hover:bg-purple-50 transition-all">Read Our Story</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/aboutus')" class="px-8 py-3 glass-pill accent-text rounded-full font-bold hover:bg-purple-100/60 transition-all border border-purple-300 shadow-sm">Read Our Story</a>
                     <a href="tel:01263514814" class="px-8 py-3 accent-bg text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-lg flex items-center gap-3">
                         <i class="fas fa-phone-alt"></i> 01263 514814
                     </a>
@@ -249,90 +406,93 @@
     </section>
 
     <!-- Services Section Header -->
-    <section class="py-16 bg-slate-100 border-y border-slate-200 text-center px-4">
-        <h2 class="text-5xl font-bold text-slate-900 mb-2">Our Services</h2>
-        <div class="w-16 h-1 accent-bg mx-auto"></div>
+    <section class="py-16 glass-panel my-8 text-center px-4 max-w-7xl mx-auto rounded-3xl border border-white/80 shadow-sm">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Our Services</h2>
+        <div class="w-16 h-1 accent-bg mx-auto rounded-full"></div>
     </section>
 
-    <section class="py-24 px-4 bg-gray-50">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <section class="py-12 px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
             <!-- 1. Funeral Packages -->
-            <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+            <div class="glass-card service-card rounded-3xl overflow-hidden">
                 <div class="image-container">
                     <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/9be13ba9815d4065bba62ab6a0114dab.jpg&w=600&output=webp&q=80" alt="Funeral Packages" class="service-image" loading="lazy" decoding="async">
                 </div>
-                <div class="p-10 flex-grow text-center">
+                <div class="p-8 flex-grow text-center flex flex-col justify-between">
                     <h3 class="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-widest">Funeral Packages</h3>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="inline-block px-10 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">View Packages</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralpackagesandcosts')" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">View Packages</a>
                 </div>
             </div>
 
             <!-- 2. Quality Assurance -->
-            <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+            <div class="glass-card service-card rounded-3xl overflow-hidden">
                 <div class="image-container">
                     <img src="https://static.wixstatic.com/media/37dc30_2e31b5f452224d11a58190341b1913ba~mv2.png" alt="NFD Member" class="service-image" loading="lazy" decoding="async">
                 </div>
-                <div class="p-10 flex-grow text-center flex flex-col justify-center">
+                <div class="p-8 flex-grow text-center flex flex-col justify-center">
                     <p class="text-slate-500 italic text-sm mb-4">Proudly Independent</p>
                     <h3 class="text-xl font-bold text-slate-800 uppercase tracking-wide text-center">Quality Assurance</h3>
                 </div>
             </div>
 
             <!-- 3. Coffins -->
-            <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+            <div class="glass-card service-card rounded-3xl overflow-hidden">
                 <div class="image-container">
                     <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_54a27d2814cd469eb4bfbac7347d7fe8~mv2.png&w=600&output=webp&q=80" alt="Coffins" class="service-image" loading="lazy" decoding="async">
                 </div>
-                <div class="p-10 flex-grow text-center">
+                <div class="p-8 flex-grow text-center flex flex-col justify-between">
                     <h3 class="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-widest">Coffin Range</h3>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="inline-block px-10 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">Browse Selection</a>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/coffins-1')" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">Browse Selection</a>
                 </div>
             </div>
 
             <!-- 4. Caskets & Urns -->
-            <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+            <div class="glass-card service-card rounded-3xl overflow-hidden">
                 <div class="image-container">
                     <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_6b6bc1a7228b4e0681bb95c2a5b3977f~mv2.png&w=400&output=webp&q=80" alt="Caskets" class="service-image" loading="lazy" decoding="async">
                 </div>
-                <div class="p-10 flex-grow text-center">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4 uppercase tracking-widest">Ashes Caskets</h3>
-                    <p class="text-xs text-slate-500 mb-6 font-medium text-center">Caskets, Urns and Scatter Tubes</p>
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="inline-block px-10 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">View Selection</a>
+                <div class="p-8 flex-grow text-center flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2 uppercase tracking-widest">Ashes Caskets</h3>
+                        <p class="text-xs text-slate-500 mb-6 font-medium text-center">Caskets, Urns and Scatter Tubes</p>
+                    </div>
+                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/casketsandurns')" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">View Selection</a>
                 </div>
             </div>
 
             <!-- 5. Planning Ahead -->
-            <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+            <div class="glass-card service-card rounded-3xl overflow-hidden">
                 <div class="image-container">
-                    <!-- Added requested image for Planning Ahead -->
                     <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_865cbd82ebd5433696ae66a13ffef359~mv2.png&w=600&output=webp&q=80" alt="Planning Ahead" class="service-image" loading="lazy" decoding="async">
                 </div>
-                <div class="p-10 flex-grow text-center">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-widest">Planning Ahead</h3>
-                    <p class="text-sm text-slate-700 leading-relaxed mb-8">
-                        Talking about death isn’t easy. With a funeral plan in place, you ensure you get the send-off you really want while protecting your family from emotional and financial burden.
-                    </p>
+                <div class="p-8 flex-grow text-center flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4 uppercase tracking-widest">Planning Ahead</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed mb-6">
+                            Talking about death isn’t easy. With a funeral plan in place, you ensure you get the send-off you really want while protecting your family from emotional and financial burden.
+                        </p>
+                    </div>
                     <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralplans')" class="text-purple-700 font-bold hover:underline">Learn More About Plans &rarr;</a>
                 </div>
             </div>
 
             <!-- 6. Memorial Jewellery -->
-            <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+            <div class="glass-card service-card rounded-3xl overflow-hidden">
                 <div class="image-container">
                     <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_a3a8e15313d4452b98afaa803667767d~mv2.avif&w=400&output=webp&q=80" alt="Ever With Jewellery" class="service-image" loading="lazy" decoding="async">
                 </div>
-                <div class="p-10 flex-grow text-center">
+                <div class="p-8 flex-grow text-center flex flex-col justify-between">
                     <h3 class="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-widest">Memorial Jewellery</h3>
-                    <a href="https://www.everwith.co.uk" target="_blank" rel="noopener noreferrer" class="inline-block px-10 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">Explore Collection</a>
+                    <a href="https://www.everwith.co.uk" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 accent-bg text-white rounded-full text-sm font-bold hover:bg-purple-700 transition-all shadow-md">Explore Collection</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Footer Integrated -->
-    <footer id="contact" class="bg-slate-900 text-white pt-20 w-full">
+    <!-- Glassmorphic Footer -->
+    <footer id="contact" class="glass-panel-dark text-white pt-20 w-full border-t border-white/20 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
                 <!-- Branding -->
@@ -340,29 +500,29 @@
                     <div class="mb-6">
                         <span class="serif text-lg font-bold uppercase tracking-widest leading-tight text-white">Cromer and District Independent Funeral Services LTD</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
                         Independent, family-run directors providing sympathetic and discrete services across North Norfolk with over 78 years of combined experience.
                     </p>
                     <div class="flex gap-4">
-                        <a href="https://www.facebook.com/CromerandDistrictFunerals" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/cromeranddistrict/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/CromerandDistrictFunerals" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-200 hover:text-white hover:bg-purple-600/50 transition-all"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/cromeranddistrict/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-200 hover:text-white hover:bg-purple-600/50 transition-all"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
                 <!-- Contact Info -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Contact Info</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm">
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest text-white">Contact Info</h4>
+                    <ul class="space-y-4 text-slate-300 text-sm">
                         <li class="flex gap-3">
-                            <i class="fas fa-map-marker-alt mt-1 text-slate-500"></i>
+                            <i class="fas fa-map-marker-alt mt-1 text-purple-400"></i>
                             <span>32 West Street, Cromer,<br>Norfolk, NR27 9DS</span>
                         </li>
                         <li class="flex gap-3">
-                            <i class="fas fa-phone-alt mt-1 text-slate-500"></i>
+                            <i class="fas fa-phone-alt mt-1 text-purple-400"></i>
                             <a href="tel:01263514814" class="hover:text-white transition-colors">01263 514814</a>
                         </li>
                         <li class="flex gap-3">
-                            <i class="fas fa-envelope mt-1 text-slate-500"></i>
+                            <i class="fas fa-envelope mt-1 text-purple-400"></i>
                             <a href="mailto:info@cromeranddistrictfunerals.co.uk" class="hover:text-white transition-colors whitespace-nowrap">info@cromeranddistrictfunerals.co.uk</a>
                         </li>
                     </ul>
@@ -370,21 +530,21 @@
 
                 <!-- Socials & Reviews -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Socials</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm">
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest text-white">Socials</h4>
+                    <ul class="space-y-4 text-slate-300 text-sm">
                         <li>
                             <a href="https://www.facebook.com/CromerandDistrictFunerals" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2">
-                                <i class="fab fa-facebook w-5 text-center"></i> Facebook
+                                <i class="fab fa-facebook w-5 text-center text-purple-400"></i> Facebook
                             </a>
                         </li>
                         <li>
                             <a href="https://www.instagram.com/cromeranddistrict/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2">
-                                <i class="fab fa-instagram w-5 text-center"></i> Instagram
+                                <i class="fab fa-instagram w-5 text-center text-purple-400"></i> Instagram
                             </a>
                         </li>
                         <li class="pt-2">
                             <a href="https://g.page/r/CemTcQAQ6GNeEBM/review" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2">
-                                <i class="fab fa-google w-5 text-center"></i> Leave us a review
+                                <i class="fab fa-google w-5 text-center text-purple-400"></i> Leave us a review
                             </a>
                         </li>
                     </ul>
@@ -392,20 +552,20 @@
 
                 <!-- Useful Info -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Information</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm">
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest text-white">Information</h4>
+                    <ul class="space-y-4 text-slate-300 text-sm">
                         <li><a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/blank-5')" class="hover:text-white transition-colors underline">Downloads & Forms</a></li>
                         <li><a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/blank')" class="hover:text-white transition-colors">Privacy Policy</a></li>
                         <li class="pt-4 border-t border-slate-800">
-                            <p class="text-[10px] uppercase tracking-tighter text-slate-500">Registration No. 08334736</p>
+                            <p class="text-[10px] uppercase tracking-tighter text-slate-400">Registration No. 08334736</p>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Accreditation Logos Section - Full Width White Strip -->
-        <div class="bg-white py-12 w-full mt-4">
+        <!-- Accreditation Logos Section - Full Width Glass Strip -->
+        <div class="bg-white/90 backdrop-blur-md py-12 w-full mt-4 border-y border-white/40 shadow-inner">
             <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24">
                 <img src="https://static.wixstatic.com/media/37dc30_2e31b5f452224d11a58190341b1913ba~mv2.png" alt="NAFD Member" class="footer-logo">
                 <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_f8aa9d4558fe417689d9e5f87355d967~mv2.png&w=200&output=webp" alt="SAIF Member" class="footer-logo">
@@ -413,11 +573,192 @@
             </div>
         </div>
 
-        <div class="bg-slate-900 pt-10 pb-10 text-center text-slate-500 text-xs">
+        <div class="bg-slate-950/80 pt-10 pb-10 text-center text-slate-400 text-xs border-t border-slate-800">
             <p>&copy; 2026 Cromer and District Independent Funeral Services LTD. All Rights Reserved.</p>
-            <p class="mt-2 font-medium text-slate-400">Available 24 hours a day, 365 days a year.</p>
+            <p class="mt-2 font-medium text-slate-300">Available 24 hours a day, 365 days a year.</p>
         </div>
     </footer>
+
+
+    <!-- Glassmorphic Pop-Up Modal: Meet The Team -->
+    <div id="team-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeTeamModal()">
+        <div class="glass-modal relative w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 text-slate-800 custom-scrollbar my-auto">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closeTeamModal()" class="sticky top-0 float-right z-30 w-10 h-10 -mt-2 -mr-2 sm:-mt-4 sm:-mr-4 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Header Section -->
+            <div class="max-w-4xl mx-auto mb-16 text-center pt-2">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Meet The Team</h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto italic serif leading-relaxed">
+                    "A dedicated family of professionals providing compassionate and sympathetic care to North Norfolk for decades."
+                </p>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="mb-20 text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+
+                    <!-- Adrian Amis -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_67964348f7fc4127ab46f9c9f5bd8e0f~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/adrian.jpg" alt="Adrian Amis" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Adrian Amis</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Owner, Funeral Arranger & Director</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                Joining the business in 2002, Adrian is the owner and manager. He is dedicated to carrying on the family business and continuing to be Cromer’s only Independent Family Funeral Directors. In 2025 Adrian acquired Goward's Independent Funeral Services, Fakenham's only Independent Family Funeral Directors.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Catherine -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_b87355b17fb84689a807f35190b7bae8~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/catherine.jpg" alt="Catherine" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Catherine</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Funeral Arranger</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                After two decades in hospitality and wedding management, Catherine transitioned into funeral arranging—a move that has felt like finding her true calling. It is a privilege to support families during their most difficult moments, ensuring every detail is handled with the utmost dignity and care.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- David -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_55ea432bb8e348d7ba4796681dc0bef9~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/david.jpg" alt="David" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">David</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                Joined the business in 2019 after over 30 years working in the NHS. David brings a wealth of experience in patient care and transport, ensuring a respectful and smooth service for every family we care for.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Barrie -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_a263f8b64c13400a83ddf6d90dabf834~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/barrie.jpg" alt="Barrie" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Barrie</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                Started in October 2020 after previously working for Dignity and the CO-OP. Barrie's extensive background in the funeral industry makes him a vital part of our professional operations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Michael -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_8123e571348a4b90bab531fbcc55963b~mv2.jpg" alt="Michael" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Michael</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                After 20 years working in public service, Michael has been in the funeral industry now for over 10 years. His dedication to public service translates into the exceptional care he provides to families.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Peter -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_c363fb4dd7bb4879b1c5089afd52eed5~mv2.png/v1/fill/w_600,h_750,al_c,q_85/peter.png" alt="Peter" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Peter</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                Joined our staff when we took over Goward's. Formerly worked at Crisp Maltings, Peter brings a local understanding and dedicated work ethic to the Fakenham and North Norfolk community.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- John -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_cabae35661e84dad860601a634b7a32d~mv2.png/v1/fill/w_600,h_750,al_c,q_85/john.png" alt="John" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">John</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                Previously worked for many years at GlaxoSmithKline. John's attention to detail and professional demeanour ensure that families receive a service that is both dignified and highly efficient.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kieran -->
+                    <div class="team-card glass-card rounded-3xl overflow-hidden">
+                        <div class="team-image-container">
+                            <img src="https://static.wixstatic.com/media/37dc30_2d5fe48f67af4aac92de4f476a385ba2~mv2.jpg" alt="Kieran" class="team-image" decoding="async">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Kieran</h3>
+                            <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer</p>
+                            <p class="text-slate-600 text-sm leading-relaxed text-left">
+                                Adrian's brother, Kieran assists the team when he isn't working his primary role as a workshop controller or spending time with his family.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Image Gallery Section -->
+            <section class="glass-panel py-16 px-6 sm:px-10 rounded-3xl border border-white/80 mb-10">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Our Facilities & Fleet</h2>
+                        <div class="w-16 h-1 accent-bg mx-auto rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_31583f05e6c244ee92149d0dca221cf8~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img1.jpg" class="gallery-img" loading="lazy" alt="Facilities">
+                        </div>
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_73adf7732bb3494ab0e510e63407d7a9~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img2.jpg" class="gallery-img" loading="lazy" alt="Fleet">
+                        </div>
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_c57d2b4e74384a6a942442da2e458151~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img3.jpg" class="gallery-img" loading="lazy" alt="Chapel">
+                        </div>
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_ed64d0c41ca0445e86b36417a536eae7~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img4.jpg" class="gallery-img" loading="lazy" alt="Office">
+                        </div>
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_2fdc6122c61846c097ff7fcc2db5e8d2~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img5.jpg" class="gallery-img" loading="lazy" alt="Reception">
+                        </div>
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_581748b796814a04b79d386edafe6cbb~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img6.jpg" class="gallery-img" loading="lazy" alt="Grounds">
+                        </div>
+                        <!-- FLEET IMAGE MOVED TO LAST POSITION -->
+                        <div class="gallery-item shadow-md">
+                            <img src="https://static.wixstatic.com/media/37dc30_3322248ddeca42a7beef956753c62101~mv2.jpg" class="gallery-img" loading="lazy" alt="Modern Funeral Fleet">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 </html>
