@@ -435,6 +435,25 @@
             }
         }
 
+        // Modal Controls for Funeral Notices & Donations Pop-up
+        function openNoticesModal() {
+            const modal = document.getElementById('notices-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeNoticesModal() {
+            const modal = document.getElementById('notices-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
         // Modal Controls for Funeral Plans Pop-up
         function openPlansModal() {
             const modal = document.getElementById('plans-modal');
@@ -666,6 +685,7 @@
                 closeCoffinsModal();
                 closeCasketsModal();
                 closePlansModal();
+                closeNoticesModal();
             }
         });
     </script>
@@ -707,7 +727,7 @@
                         </div>
                     </div>
 
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="hover:text-purple-700 transition-colors py-2">Funeral Notices & Donations</a>
+                    <button type="button" onclick="openNoticesModal()" class="hover:text-purple-700 transition-colors py-2 focus:outline-none">Funeral Notices & Donations</button>
 
                     <!-- Team Button opens Glassmorphic Pop-up Modal -->
                     <button type="button" onclick="openTeamModal()" class="hover:text-purple-700 transition-colors py-2 focus:outline-none">The Team</button>
@@ -740,7 +760,7 @@
                         <button type="button" onclick="openCoffinsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Coffins</button>
                     </div>
                 </div>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/funeralnoticesanddonations')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Funeral Notices & Donations</a>
+                <button type="button" onclick="openNoticesModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">Funeral Notices & Donations</button>
                 <button type="button" onclick="openTeamModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">The Team</button>
                 <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Help & Support</a>
                 <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Contact Us</a>
@@ -759,7 +779,15 @@
                 <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight text-white text-center">
                     A compassionate and caring service in your time of need.
                 </h1>
-                <div class="w-24 h-1 accent-bg mx-auto mb-2 text-center rounded-full"></div>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 text-center rounded-full"></div>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <button type="button" onclick="openNoticesModal()" class="px-6 py-3.5 accent-bg text-white font-bold rounded-full hover:bg-purple-700 transition-all shadow-lg flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-ribbon"></i> Upcoming Funerals
+                    </button>
+                    <button type="button" onclick="openPlansModal()" class="px-6 py-3.5 glass-pill text-white font-bold rounded-full hover:bg-white/20 transition-all border border-white/40 shadow-lg flex items-center gap-2 cursor-pointer">
+                        <i class="fas fa-file-contract"></i> Funeral Plans
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -972,6 +1000,34 @@
         </div>
     </footer>
 
+
+    <!-- Glassmorphic Pop-Up Modal: Funeral Notices & Donations -->
+    <div id="notices-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeNoticesModal()">
+        <div class="glass-modal relative w-full max-w-6xl h-[90vh] flex flex-col rounded-3xl p-4 sm:p-8 text-slate-800 my-auto overflow-hidden">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closeNoticesModal()" class="absolute top-4 right-4 z-30 w-10 h-10 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Header Section -->
+            <div class="max-w-4xl mx-auto text-center pt-2 mb-4 flex-shrink-0">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2">Funeral Notices & Donations</h2>
+                <div class="w-20 h-1 accent-bg mx-auto rounded-full"></div>
+            </div>
+
+            <!-- iframe Container -->
+            <div class="w-full flex-grow rounded-2xl overflow-hidden border border-white/60 bg-white/80 shadow-inner relative">
+                <iframe src="https://cromeranddistrictfuneralservices.muchloved.org/Tributes/" class="w-full h-full border-0" title="Funeral Notices & Donations" style="width: 100%; height: 100%; min-width: 100%;"></iframe>
+            </div>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-3 text-slate-500 text-xs font-medium flex-shrink-0">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Glassmorphic Pop-Up Modal: Funeral Plans -->
     <div id="plans-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closePlansModal()">
