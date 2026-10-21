@@ -404,6 +404,30 @@
 
         .fade-out { opacity: 0; }
 
+        .tab-active {
+            border-bottom: 3px solid #af4acc;
+            color: #af4acc;
+            font-weight: 600;
+        }
+        .step-number {
+            background-color: #f3e8f5;
+            color: #af4acc;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
         @media (max-width: 768px) {
             .footer-logo {
                 max-height: 140px;
@@ -432,6 +456,51 @@
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 document.body.style.overflow = '';
+            }
+        }
+
+        // Modal Controls for Help & Support Pop-up
+        function openHelpModal() {
+            const modal = document.getElementById('help-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeHelpModal() {
+            const modal = document.getElementById('help-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function showTab(tabId) {
+            // Hide all tab content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active classes from all buttons
+            const buttons = document.querySelectorAll('[id^="btn-tab"]');
+            buttons.forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-slate-500');
+                btn.classList.add('border-transparent');
+            });
+
+            // Show selected tab content
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) activeContent.classList.add('active');
+
+            // Set button to active
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('tab-active');
+                activeBtn.classList.remove('text-slate-500');
+                activeBtn.classList.remove('border-transparent');
             }
         }
 
@@ -686,6 +755,7 @@
                 closeCasketsModal();
                 closePlansModal();
                 closeNoticesModal();
+                closeHelpModal();
             }
         });
     </script>
@@ -732,7 +802,7 @@
                     <!-- Team Button opens Glassmorphic Pop-up Modal -->
                     <button type="button" onclick="openTeamModal()" class="hover:text-purple-700 transition-colors py-2 focus:outline-none">The Team</button>
 
-                    <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="hover:text-purple-700 transition-colors py-2">Help & Support</a>
+                    <button type="button" onclick="openHelpModal()" class="hover:text-purple-700 transition-colors py-2 focus:outline-none">Help & Support</button>
                     <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="hover:text-purple-700 transition-colors py-2">Contact Us</a>
                 </nav>
 
@@ -762,7 +832,7 @@
                 </div>
                 <button type="button" onclick="openNoticesModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">Funeral Notices & Donations</button>
                 <button type="button" onclick="openTeamModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">The Team</button>
-                <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/helpandsupport')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Help & Support</a>
+                <button type="button" onclick="openHelpModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">Help & Support</button>
                 <a href="javascript:void(0)" onclick="navigateTop('https://www.cromeranddistrictfunerals.co.uk/contact')" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Contact Us</a>
             </div>
         </div>
@@ -1000,6 +1070,259 @@
         </div>
     </footer>
 
+
+    <!-- Glassmorphic Pop-Up Modal: Help & Support ("What to do when someone dies") -->
+    <div id="help-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeHelpModal()">
+        <div class="glass-modal relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 text-slate-800 custom-scrollbar my-auto">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closeHelpModal()" class="sticky top-0 float-right z-30 w-10 h-10 -mt-2 -mr-2 sm:-mt-4 sm:-mr-4 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Title Section -->
+            <div class="max-w-4xl mx-auto text-center pt-2 mb-8">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4">What to do when someone dies</h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 rounded-full"></div>
+                <p class="text-base sm:text-lg text-slate-600 italic serif">
+                    "With our help and guidance, we will endeavour to make it as straightforward as possible."
+                </p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex border-b border-gray-200 mb-8 overflow-x-auto whitespace-nowrap justify-center">
+                <button onclick="showTab('tab1')" id="btn-tab1" class="px-6 py-3 text-sm md:text-base tab-active transition-colors duration-200 hover:text-purple-700">Initial Steps</button>
+                <button onclick="showTab('tab2')" id="btn-tab2" class="px-6 py-3 text-sm md:text-base text-slate-500 border-b-2 border-transparent transition-colors duration-200 hover:text-purple-700">Registering a Death</button>
+                <button onclick="showTab('tab3')" id="btn-tab3" class="px-6 py-3 text-sm md:text-base text-slate-500 border-b-2 border-transparent transition-colors duration-200 hover:text-purple-700">Arranging a Funeral</button>
+            </div>
+
+            <!-- Tab Content 1: Initial Steps -->
+            <div id="tab1" class="tab-content active text-left">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
+                    <p class="text-slate-600 mb-8 leading-relaxed">
+                        Sometimes a death may be expected, but nothing prepares us for the emotional shock of losing someone close. Making funeral arrangements can seem very confusing but with our help and guidance, we will endeavour to make it as straightforward as possible.
+                    </p>
+
+                    <div class="bg-purple-50/80 border-l-4 border-purple-400 p-6 mb-10 rounded-r-xl">
+                        <h3 class="font-bold text-slate-800 mb-2">Changes From the 9th September 2024</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed">Following a death and after being notified, the doctor will complete the death certificate (MCCD) and then email it to a Medical Examiner along with the medical records. The Medical Examiner looks at all the information and contacts the next of kin/family to confirm that the information is correct. Once satisfied, the Medical Examiner will then email the certificate to the registrars allowing the next of kin/family to make an appointment to register the death.</p>
+                    </div>
+
+                    <div class="space-y-12">
+                        <section>
+                            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                                <i class="fas fa-home accent-text mr-3"></i> When someone dies at home
+                            </h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                Please contact your own Doctor or on call Doctor, district nurse or terminal care nurse, if you cannot reach your doctor call 111. When one of these medical professionals has confirmed the death, you can then contact ourselves. It does not matter what the time of day it is, we are available 24 hours a day, 7 days a week, 365 days of the year.
+                            </p>
+                            <p class="text-slate-600 mt-4 leading-relaxed font-medium italic">
+                                There is no rush and if you wish to spend more time with your loved one at home you are welcome to do so. When you are ready, two members of our staff will then bring your loved one into our care.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                                <i class="fas fa-hospital accent-text mr-3"></i> When someone dies in hospital
+                            </h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                You no longer need to attend the hospital to collect the medical cause of death certificate, this will be sent electronically from the hospital to the Medical Examiner. The Medical Examiner will contact you.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                                <i class="fas fa-building accent-text mr-3"></i> When someone dies in a nursing home
+                            </h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                The staff may be qualified to confirm that death has taken place or alternatively the home will arrange for a doctor to visit. Once the death has been confirmed, the home or yourselves can contact us to make arrangements for bringing your loved one into our care, at any time day or night. The doctor will send the medical cause of death to the Medical Examiner and the Medical Examiner will contact you.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                                <i class="fas fa-exclamation-triangle accent-text mr-3"></i> When someone dies unexpectedly
+                            </h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                If a doctor is unable to confirm the cause of death, if it is unexpected or an accident, the coroner may be involved. The coroner will arrange for your loved one to be taken to a local hospital, this will be carried out by a funeral director who is contracted by the coroner (you do not have to use this funeral director for the funeral arrangements). The coroner and ourselves will keep you informed as to what to do next depending on the situation.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Registering a Death -->
+            <div id="tab2" class="tab-content text-left">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
+                    <section class="mb-10">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-4">Registration Procedure</h2>
+                        <p class="text-slate-600 mb-4 leading-relaxed">
+                            A member of the family should ideally register the death. If this is not possible it should be someone who was present at the death, the person organising the funeral or the occupier of the premises in which the death occurred.
+                        </p>
+                        <p class="text-slate-600 mb-4 leading-relaxed">
+                            An appointment can only be booked once you have been contacted by either the Medical Examiner or the Coroners office; they will advise you that you can now make an appointment and this must be completed within 5 days of this authorisation.
+                        </p>
+                        <div class="bg-amber-50 rounded-xl p-5 text-sm text-amber-900 border border-amber-100 flex items-start">
+                            <i class="fas fa-info-circle mr-3 mt-1 text-amber-600"></i>
+                            <div>
+                                <strong>Legal Requirement:</strong> A death must be registered by law, in the district or sub-district in which it has taken place. The Registrar will be unable to talk to or see anyone without a prior appointment.
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mb-10">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-4">Registration Offices & Booking</h2>
+                        <p class="text-slate-600 mb-2 text-sm">Booking Phone: <span class="font-bold text-slate-900">0344 800 8020 (Option 3)</span> &mdash; Mon-Fri, 9am-5pm.</p>
+                        <p class="text-sm text-slate-600 mb-6 flex items-center">
+                            <i class="fas fa-external-link-alt text-xs mr-2 text-slate-400"></i>
+                            <a href="https://www.gov.uk/register-offices" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:underline font-medium">www.gov.uk/register-offices</a>
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 bg-gray-50/80 rounded-xl border border-gray-100">
+                                <h4 class="font-bold text-slate-800">North Walsham</h4>
+                                <p class="text-xs text-slate-500">The Cedars, New Road, North Walsham, NR28 9DE</p>
+                                <p class="text-xs text-purple-700 mt-2 font-medium">Tue, Thu, Fri (plus select Saturdays)<br>9:30am - 4:30pm</p>
+                            </div>
+                            <div class="p-4 bg-gray-50/80 rounded-xl border border-gray-100">
+                                <h4 class="font-bold text-slate-800">Norwich</h4>
+                                <p class="text-xs text-slate-500">The Archive Centre, NR1 2DQ</p>
+                                <p class="text-xs text-purple-700 mt-2 font-medium">Mon - Fri<br>9:30am - 4:30pm</p>
+                            </div>
+                            <div class="p-4 bg-gray-50/80 rounded-xl border border-gray-100">
+                                <h4 class="font-bold text-slate-800">Fakenham</h4>
+                                <p class="text-xs text-slate-500">Fakenham Connect, NR21 9SR</p>
+                                <p class="text-xs text-purple-700 mt-2 font-medium">Thursdays<br>9:30am - 4:00pm</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <section>
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">Details to provide</h3>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Medical certificate of the cause of death (sent automatically to registrar)</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Date and place of death</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Full names (inc. maiden name if applicable &mdash; please bring marriage certificate)</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Usual home address and post code</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Date/place of birth (please bring birth certificate if available)</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Occupation of the deceased</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> Full name, DOB, and occupation of spouse or civil partner</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle accent-text mr-3 mt-1"></i> NHS number, medical card, or Serco letter</li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">Documents received</h3>
+                            <ul class="space-y-4 text-sm text-slate-600">
+                                <li>
+                                    <div class="font-bold text-slate-800">Certificate for burial or cremation (Green form)</div>
+                                    <p class="text-xs italic">Sent electronically to your nominated funeral director.</p>
+                                </li>
+                                <li>
+                                    <div class="font-bold text-slate-800">Certificate of registration of death (Form BD8)</div>
+                                    <p class="text-xs italic">Issued for Social Security purposes (state pension/benefits).</p>
+                                </li>
+                                <li>
+                                    <div class="font-bold text-slate-800">Death Certificates (&pound;12.50 per copy)</div>
+                                    <p class="text-xs text-red-600 font-medium mt-1 italic">Please note: You can purchase more after registration, however the price does increase.</p>
+                                </li>
+                                <li class="p-4 bg-blue-50/80 rounded-xl border border-blue-100">
+                                    <div class="font-bold text-blue-900 mb-1">Tell Us Once Service</div>
+                                    <p class="text-xs text-blue-800">A free service to notify government departments like DWP, Council Tax, Passport, and Blue Badge.</p>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <div class="mt-10 p-6 bg-amber-50/80 rounded-xl border border-amber-100">
+                        <h4 class="font-bold text-slate-800 mb-2 italic">Deaths involving the Coroner</h4>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            If reported to the Coroner, the Registrar cannot register the death until enquiries are complete. You will be advised when registration can take place. If an inquest is held, you will not need to attend an appointment to register the death.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Arranging a Funeral -->
+            <div id="tab3" class="tab-content text-left">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-8">
+                    <section class="mb-10">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-4">Making Arrangements</h2>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Funeral arrangements can be made at our office or if it is more convenient, in the comfort of your own home. At our initial meeting we will explain the many options available and ask a number of questions. It is probable that you will not know all the answers and rather than rush into making the wrong decision, it is often best to take your time and to discuss it further with your wider family.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Regardless of beliefs or culture we are able to offer you many different ways to make the funeral an individual, special and memorable experience. We can arrange a traditional funeral or an alternative funeral that suits your needs.
+                        </p>
+                    </section>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-6">Venue & Services</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <span class="step-number mr-4">1</span>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-1">Venue Options</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed">Usually at a crematorium chapel or local church, but can also be in village halls, sports halls, outside, or private residences.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="step-number mr-4">2</span>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-1">Cremation</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed">Local crematoriums: Cromer, St Faiths in Horsham, Mintlyn, or Earlham. Double time can be booked for very large congregations or long services.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="step-number mr-4">3</span>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-1">Burial</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed">Existing family graves or new plots in local town/parish cemeteries and churchyards. We can advise on availability as some have subsequently closed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-6">Religious or Non-Religious</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                                Services can be carried out by a minister of religion, humanist celebrant, civil celebrant, or even a family member or friend.
+                            </p>
+                            <h4 class="font-bold text-slate-800 text-sm mb-3">Service Content Includes:</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <span class="p-2 bg-gray-50/80 border border-gray-100 rounded text-[11px] text-slate-700 flex items-center"><i class="fas fa-feather-alt mr-2 accent-text"></i> Tributes</span>
+                                <span class="p-2 bg-gray-50/80 border border-gray-100 rounded text-[11px] text-slate-700 flex items-center"><i class="fas fa-book-open mr-2 accent-text"></i> Readings</span>
+                                <span class="p-2 bg-gray-50/80 border border-gray-100 rounded text-[11px] text-slate-700 flex items-center"><i class="fas fa-pen-fancy mr-2 accent-text"></i> Poems</span>
+                                <span class="p-2 bg-gray-50/80 border border-gray-100 rounded text-[11px] text-slate-700 flex items-center"><i class="fas fa-microphone mr-2 accent-text"></i> An Address</span>
+                                <span class="p-2 bg-gray-50/80 border border-gray-100 rounded text-[11px] text-slate-700 flex items-center"><i class="fas fa-hourglass-start mr-2 accent-text"></i> Quiet Reflection</span>
+                                <span class="p-2 bg-gray-50/80 border border-gray-100 rounded text-[11px] text-slate-700 flex items-center"><i class="fas fa-music mr-2 accent-text"></i> Songs & Hymns</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Contact -->
+            <div class="text-center p-8 bg-purple-50/80 rounded-2xl border border-purple-100 shadow-sm mb-6">
+                <h3 class="text-2xl font-bold text-slate-800 mb-3">Available 24/7/365</h3>
+                <p class="text-slate-600 mb-6">Our family is here for your family whenever you need us.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-12">
+                    <a href="tel:01263514814" class="text-purple-700 text-lg font-bold hover:underline flex items-center">
+                        <i class="fas fa-phone-alt mr-3"></i> 01263 514814
+                    </a>
+                    <a href="mailto:info@cromeranddistrictfunerals.co.uk" class="text-purple-700 text-lg font-bold hover:underline flex items-center">
+                        <i class="fas fa-envelope mr-3"></i> info@cromeranddistrictfunerals.co.uk
+                    </a>
+                </div>
+            </div>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Glassmorphic Pop-Up Modal: Funeral Notices & Donations -->
     <div id="notices-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeNoticesModal()">
