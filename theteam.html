@@ -1,1 +1,715 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Team | Cromer and District Independent Funeral Services</title>
+    
+    <!-- Performance: Preconnect to critical domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://static.wixstatic.com">
+    
+    <!-- CRITICAL: This base tag ensures all links navigate the main browser window, not the iframe -->
+    <base target="_top">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Matching the fonts from cromeranddistrictfunerals.co.uk */
+        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2d3748;
+            background-color: #ffffff;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Gilda Display', serif;
+        }
+        .accent-text {
+            color: #af4acc;
+        }
+        .accent-bg {
+            background-color: #af4acc;
+        }
+        .accent-border {
+            border-color: #af4acc;
+        }
+        
+        /* Team Grid Styles */
+        .team-card {
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -10px rgba(175, 74, 204, 0.2);
+        }
+        .image-container {
+            aspect-ratio: 4/5;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .team-card:hover .team-image {
+            transform: scale(1.05);
+        }
 
+        /* Gallery Styles */
+        .gallery-item {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 1rem;
+            background-color: #f3f4f6;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+
+        /* Footer Logo Optimization */
+        .footer-logo {
+            max-height: 180px; 
+            width: auto;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .footer-logo {
+                max-height: 120px; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 pt-16">
+
+    <!-- Header Section -->
+    <div class="max-w-7xl mx-auto px-4 mb-20 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Meet The Team</h1>
+        <div class="w-24 h-1 accent-bg mx-auto mb-8"></div>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto italic serif">
+            "A dedicated family of professionals providing compassionate and sympathetic care to North Norfolk for decades."
+        </p>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="max-w-7xl mx-auto px-4 mb-24 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- Adrian Amis -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_67964348f7fc4127ab46f9c9f5bd8e0f~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/adrian.jpg" alt="Adrian Amis" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Adrian Amis</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Owner, Funeral Arranger & Director</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Joining the business in 2002, Adrian is the owner and manager. He is dedicated to carrying on the family business and continuing to be Cromer’s only Independent Family Funeral Directors. In 2025 Adrian acquired Goward's Independent Funeral Services, Fakenham's only Independent Family Funeral Directors.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Catherine -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_b87355b17fb84689a807f35190b7bae8~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/catherine.jpg" alt="Catherine" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Catherine</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Funeral Arranger</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        After two decades in hospitality and wedding management, Catherine transitioned into funeral arranging—a move that has felt like finding her true calling. It is a privilege to support families during their most difficult moments, ensuring every detail is handled with the utmost dignity and care.
+                    </p>
+                </div>
+            </div>
+
+            <!-- David -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_55ea432bb8e348d7ba4796681dc0bef9~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/david.jpg" alt="David" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">David</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Joined the business in 2019 after over 30 years working in the NHS. David brings a wealth of experience in patient care and transport, ensuring a respectful and smooth service for every family we care for.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Barrie -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_a263f8b64c13400a83ddf6d90dabf834~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/barrie.jpg" alt="Barrie" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Barrie</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Started in October 2020 after previously working for Dignity and the CO-OP. Barrie's extensive background in the funeral industry makes him a vital part of our professional operations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Michael -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_8123e571348a4b90bab531fbcc55963b~mv2.jpg" alt="Michael" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Michael</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        After 20 years working in public service, Michael has been in the funeral industry now for over 10 years. His dedication to public service translates into the exceptional care he provides to families.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Peter -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_c363fb4dd7bb4879b1c5089afd52eed5~mv2.png/v1/fill/w_600,h_750,al_c,q_85/peter.png" alt="Peter" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Peter</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Joined our staff when we took over Goward's. Formerly worked at Crisp Maltings, Peter brings a local understanding and dedicated work ethic to the Fakenham and North Norfolk community.
+                    </p>
+                </div>
+            </div>
+
+            <!-- John -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_cabae35661e84dad860601a634b7a32d~mv2.png/v1/fill/w_600,h_750,al_c,q_85/john.png" alt="John" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">John</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Previously worked for many years at GlaxoSmithKline. John's attention to detail and professional demeanour ensure that families receive a service that is both dignified and highly efficient.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kieran -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_2d5fe48f67af4aac92de4f476a385ba2~mv2.jpg" alt="Kieran" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Kieran</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Adrian's brother, Kieran assists the team when he isn't working his primary role as a workshop controller or spending time with his family.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Image Gallery Section -->
+    <section class="bg-slate-100 py-24 px-4 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Our Facilities & Fleet</h2>
+                <div class="w-16 h-1 accent-bg mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_31583f05e6c244ee92149d0dca221cf8~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img1.jpg" class="gallery-img" loading="lazy" alt="Facilities">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_73adf7732bb3494ab0e510e63407d7a9~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img2.jpg" class="gallery-img" loading="lazy" alt="Fleet">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_c57d2b4e74384a6a942442da2e458151~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img3.jpg" class="gallery-img" loading="lazy" alt="Chapel">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_ed64d0c41ca0445e86b36417a536eae7~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img4.jpg" class="gallery-img" loading="lazy" alt="Office">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_2fdc6122c61846c097ff7fcc2db5e8d2~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img5.jpg" class="gallery-img" loading="lazy" alt="Reception">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_581748b796814a04b79d386edafe6cbb~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img6.jpg" class="gallery-img" loading="lazy" alt="Grounds">
+                </div>
+                <!-- FLEET IMAGE MOVED TO LAST POSITION -->
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_3322248ddeca42a7beef956753c62101~mv2.jpg" class="gallery-img" loading="lazy" alt="Modern Funeral Fleet">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Integrated -->
+    <footer id="contact" class="bg-slate-900 text-white pt-20 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
+                <!-- Branding -->
+                <div class="col-span-1 lg:col-span-1">
+                    <div class="mb-6">
+                        <span class="serif text-lg font-bold uppercase tracking-widest leading-tight text-white">Cromer and District Independent Funeral Services LTD</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Independent, family-run directors providing sympathetic and discrete services across North Norfolk with over 78 years of combined experience.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/CromerandDistrictFunerals" class="text-slate-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/cromeranddistrict/" class="text-slate-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Contact Info</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li class="flex gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-slate-500"></i>
+                            <span>32 West Street, Cromer,<br>Norfolk, NR27 9DS</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-phone-alt mt-1 text-slate-500"></i>
+                            <a href="tel:01263514814" class="hover:text-white transition-colors">01263 514814</a>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-envelope mt-1 text-slate-500"></i>
+                            <a href="mailto:info@cromeranddistrictfunerals.co.uk" class="hover:text-white transition-colors">info@cromeranddistrictfunerals.co.uk</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Socials & Reviews -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Socials</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li>
+                            <a href="https://www.facebook.com/CromerandDistrictFunerals" class="hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fab fa-facebook w-5 text-center"></i> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/cromeranddistrict/" class="hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fab fa-instagram w-5 text-center"></i> Instagram
+                            </a>
+                        </li>
+                        <li class="pt-2">
+                            <a href="https://g.page/r/CemTcQAQ6GNeEBM/review" class="hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fab fa-google w-5 text-center"></i> Leave us a review
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Useful Info -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Information</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="https://www.cromeranddistrictfunerals.co.uk/blank-5" class="hover:text-white transition-colors underline">Downloads & Forms</a></li>
+                        <li><a href="https://www.cromeranddistrictfunerals.co.uk/blank" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li class="pt-4 border-t border-slate-800">
+                            <p class="text-[10px] uppercase tracking-tighter text-slate-500">Registration No. 08334736</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accreditation Logos Section - Full Width White Strip -->
+        <div class="bg-white py-12 w-full mt-4">
+            <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24">
+                <img src="https://static.wixstatic.com/media/37dc30_d642bcf341f540a1bb5cbf4b4c5a5258~mv2.gif/v1/fill/w_180,h_181,al_c,q_80/NAFD_LOGO.gif" alt="NAFD Member" class="footer-logo">
+                <img src="https://static.wixstatic.com/media/37dc30_f8aa9d4558fe417689d9e5f87355d967~mv2.png/v1/fill/w_180,h_158,al_c,q_85/SAIF_LOGO.png" alt="SAIF Member" class="footer-logo">
+                <img src="https://static.wixstatic.com/media/37dc30_50c77cd97e58416ea95e0ca2d2844a5e~mv2.png/v1/fill/w_180,h_180,al_c,q_85/ACCREDITATION.png" alt="Accreditation" class="footer-logo">
+            </div>
+        </div>
+
+        <div class="bg-slate-900 pt-10 pb-10 text-center text-slate-500 text-xs">
+            <p>&copy; 2026 Cromer and District Independent Funeral Services LTD. All Rights Reserved.</p>
+            <p class="mt-2 font-medium text-slate-400">Available 24 hours a day, 365 days a year.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+    <title>The Team | Cromer and District Independent Funeral Services</title>
+    
+    <!-- Performance: Preconnect to critical domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://static.wixstatic.com">
+    
+    <!-- CRITICAL: This base tag ensures all links navigate the main browser window, not the iframe -->
+    <base target="_top">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Matching the fonts from cromeranddistrictfunerals.co.uk */
+        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2d3748;
+            background-color: #ffffff;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Gilda Display', serif;
+        }
+        .accent-text {
+            color: #af4acc;
+        }
+        .accent-bg {
+            background-color: #af4acc;
+        }
+        .accent-border {
+            border-color: #af4acc;
+        }
+        
+        /* Team Grid Styles */
+        .team-card {
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -10px rgba(175, 74, 204, 0.2);
+        }
+        .image-container {
+            aspect-ratio: 4/5;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .team-card:hover .team-image {
+            transform: scale(1.05);
+        }
+
+        /* Gallery Styles */
+        .gallery-item {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 1rem;
+            background-color: #f3f4f6;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+
+        /* Footer Logo Optimization */
+        .footer-logo {
+            max-height: 180px; 
+            width: auto;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .footer-logo {
+                max-height: 120px; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 pt-16">
+
+    <!-- Header Section -->
+    <div class="max-w-7xl mx-auto px-4 mb-20 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Meet The Team</h1>
+        <div class="w-24 h-1 accent-bg mx-auto mb-8"></div>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto italic serif">
+            "A dedicated family of professionals providing compassionate and sympathetic care to North Norfolk for decades."
+        </p>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="max-w-7xl mx-auto px-4 mb-24 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- Adrian Amis -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_67964348f7fc4127ab46f9c9f5bd8e0f~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/adrian.jpg" alt="Adrian Amis" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Adrian Amis</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Owner, Funeral Arranger & Director</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Joining the business in 2002, Adrian is the owner and manager. He is dedicated to carrying on the family business and continuing to be Cromer’s only Independent Family Funeral Directors. In 2025 Adrian acquired Goward's Independent Funeral Services, Fakenham's only Independent Family Funeral Directors.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Catherine -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_b87355b17fb84689a807f35190b7bae8~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/catherine.jpg" alt="Catherine" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Catherine</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Funeral Arranger</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        After two decades in hospitality and wedding management, Catherine transitioned into funeral arranging—a move that has felt like finding her true calling. It is a privilege to support families during their most difficult moments, ensuring every detail is handled with the utmost dignity and care.
+                    </p>
+                </div>
+            </div>
+
+            <!-- David -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_55ea432bb8e348d7ba4796681dc0bef9~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/david.jpg" alt="David" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">David</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Joined the business in 2019 after over 30 years working in the NHS. David brings a wealth of experience in patient care and transport, ensuring a respectful and smooth service for every family we care for.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Barrie -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_a263f8b64c13400a83ddf6d90dabf834~mv2.jpg/v1/fill/w_600,h_750,al_c,q_85/barrie.jpg" alt="Barrie" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Barrie</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Started in October 2020 after previously working for Dignity and the CO-OP. Barrie's extensive background in the funeral industry makes him a vital part of our professional operations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Michael -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_8123e571348a4b90bab531fbcc55963b~mv2.jpg" alt="Michael" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Michael</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        After 20 years working in public service, Michael has been in the funeral industry now for over 10 years. His dedication to public service translates into the exceptional care he provides to families.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Peter -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_c363fb4dd7bb4879b1c5089afd52eed5~mv2.png/v1/fill/w_600,h_750,al_c,q_85/peter.png" alt="Peter" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Peter</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Joined our staff when we took over Goward's. Formerly worked at Crisp Maltings, Peter brings a local understanding and dedicated work ethic to the Fakenham and North Norfolk community.
+                    </p>
+                </div>
+            </div>
+
+            <!-- John -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_cabae35661e84dad860601a634b7a32d~mv2.png/v1/fill/w_600,h_750,al_c,q_85/john.png" alt="John" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">John</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer and Driver</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Previously worked for many years at GlaxoSmithKline. John's attention to detail and professional demeanour ensure that families receive a service that is both dignified and highly efficient.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kieran -->
+            <div class="team-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="image-container">
+                    <img src="https://static.wixstatic.com/media/37dc30_2d5fe48f67af4aac92de4f476a385ba2~mv2.jpg" alt="Kieran" class="team-image" decoding="async">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-1 text-left">Kieran</h3>
+                    <p class="accent-text font-medium text-sm uppercase tracking-widest mb-4 text-left">Bearer</p>
+                    <p class="text-slate-600 text-sm leading-relaxed text-left">
+                        Adrian's brother, Kieran assists the team when he isn't working his primary role as a workshop controller or spending time with his family.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Image Gallery Section -->
+    <section class="bg-slate-100 py-24 px-4 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Our Facilities & Fleet</h2>
+                <div class="w-16 h-1 accent-bg mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_31583f05e6c244ee92149d0dca221cf8~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img1.jpg" class="gallery-img" loading="lazy" alt="Facilities">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_73adf7732bb3494ab0e510e63407d7a9~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img2.jpg" class="gallery-img" loading="lazy" alt="Fleet">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_c57d2b4e74384a6a942442da2e458151~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img3.jpg" class="gallery-img" loading="lazy" alt="Chapel">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_ed64d0c41ca0445e86b36417a536eae7~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img4.jpg" class="gallery-img" loading="lazy" alt="Office">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_2fdc6122c61846c097ff7fcc2db5e8d2~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img5.jpg" class="gallery-img" loading="lazy" alt="Reception">
+                </div>
+                <div class="gallery-item shadow-md">
+                    <img src="https://static.wixstatic.com/media/37dc30_581748b796814a04b79d386edafe6cbb~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/img6.jpg" class="gallery-img" loading="lazy" alt="Grounds">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Integrated -->
+    <footer id="contact" class="bg-slate-900 text-white pt-20 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
+                <!-- Branding -->
+                <div class="col-span-1 lg:col-span-1">
+                    <div class="mb-6">
+                        <span class="serif text-lg font-bold uppercase tracking-widest leading-tight text-white">Cromer and District Independent Funeral Services LTD</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Independent, family-run directors providing sympathetic and discrete services across North Norfolk with over 78 years of combined experience.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/CromerandDistrictFunerals" class="text-slate-400 hover:text-white text-xl transition-colors"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/cromeranddistrict/" class="text-slate-400 hover:text-white text-xl transition-colors"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Contact Info</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li class="flex gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-slate-500"></i>
+                            <span>32 West Street, Cromer,<br>Norfolk, NR27 9DS</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-phone-alt mt-1 text-slate-500"></i>
+                            <a href="tel:01263514814" class="hover:text-white transition-colors">01263 514814</a>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-envelope mt-1 text-slate-500"></i>
+                            <a href="mailto:info@cromeranddistrictfunerals.co.uk" class="hover:text-white transition-colors">info@cromeranddistrictfunerals.co.uk</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Socials & Reviews -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Socials</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li>
+                            <a href="https://www.facebook.com/CromerandDistrictFunerals" class="hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fab fa-facebook w-5 text-center"></i> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/cromeranddistrict/" class="hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fab fa-instagram w-5 text-center"></i> Instagram
+                            </a>
+                        </li>
+                        <li class="pt-2">
+                            <a href="https://g.page/r/CemTcQAQ6GNeEBM/review" class="hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fab fa-google w-5 text-center"></i> Leave us a review
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Useful Info -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 uppercase tracking-widest">Information</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="https://www.cromeranddistrictfunerals.co.uk/blank-5" class="hover:text-white transition-colors underline">Downloads & Forms</a></li>
+                        <li><a href="https://www.cromeranddistrictfunerals.co.uk/blank" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li class="pt-4 border-t border-slate-800">
+                            <p class="text-[10px] uppercase tracking-tighter text-slate-500">Registration No. 08334736</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accreditation Logos Section - Full Width White Strip -->
+        <div class="bg-white py-12 w-full mt-4">
+            <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24">
+                <img src="https://static.wixstatic.com/media/37dc30_2e31b5f452224d11a58190341b1913ba~mv2.png" alt="NAFD Member" class="footer-logo">
+                <img src="https://static.wixstatic.com/media/37dc30_f8aa9d4558fe417689d9e5f87355d967~mv2.png/v1/fill/w_180,h_158,al_c,q_85/SAIF_LOGO.png" alt="SAIF Member" class="footer-logo">
+                <img src="https://static.wixstatic.com/media/37dc30_50c77cd97e58416ea95e0ca2d2844a5e~mv2.png/v1/fill/w_180,h_180,al_c,q_85/ACCREDITATION.png" alt="Accreditation" class="footer-logo">
+            </div>
+        </div>
+
+        <div class="bg-slate-900 pt-10 pb-10 text-center text-slate-500 text-xs">
+            <p>&copy; 2026 Cromer and District Independent Funeral Services LTD. All Rights Reserved.</p>
+            <p class="mt-2 font-medium text-slate-400">Available 24 hours a day, 365 days a year.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
