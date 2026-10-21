@@ -461,10 +461,19 @@
             window.top.location.href = url;
         }
 
+        // Helper function to reset modal scroll position
+        function resetModalScroll(modal) {
+            if (!modal) return;
+            modal.scrollTop = 0;
+            const inner = modal.querySelector('.glass-modal');
+            if (inner) inner.scrollTop = 0;
+        }
+
         // Modal Controls for Glassmorphic About Us Pop-up
         function openAboutModal() {
             const modal = document.getElementById('about-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -484,6 +493,7 @@
         function openContactModal() {
             const modal = document.getElementById('contact-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -503,6 +513,7 @@
         function openTeamModal() {
             const modal = document.getElementById('team-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -522,6 +533,7 @@
         function openHelpModal() {
             const modal = document.getElementById('help-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -567,6 +579,7 @@
         function openNoticesModal() {
             const modal = document.getElementById('notices-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -586,6 +599,7 @@
         function openPlansModal() {
             const modal = document.getElementById('plans-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -605,6 +619,7 @@
         function openPackagesModal() {
             const modal = document.getElementById('packages-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -624,6 +639,7 @@
         function openCoffinsModal() {
             const modal = document.getElementById('coffins-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -635,6 +651,7 @@
         function openCasketsModal() {
             const modal = document.getElementById('caskets-modal');
             if (modal) {
+                resetModalScroll(modal);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -867,7 +884,6 @@
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-700">
-                    <a href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-purple-700 transition-colors py-2">Home</a>
                     <button type="button" onclick="openAboutModal()" class="hover:text-purple-700 transition-colors py-2 focus:outline-none">About Us</button>
 
                     <!-- Services Dropdown -->
@@ -906,7 +922,6 @@
         <!-- Mobile Menu -->
         <div class="lg:hidden hidden glass-panel border-t border-white/50" id="mobile-menu">
             <div class="px-4 pt-2 pb-6 space-y-2 text-base font-medium text-slate-700">
-                <a href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); document.getElementById('mobile-menu').classList.add('hidden');" class="block px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700">Home</a>
                 <button type="button" onclick="openAboutModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">About Us</button>
                 <div class="px-3 py-2">
                     <span class="font-semibold text-slate-900 block mb-1">Services</span>
@@ -1145,8 +1160,12 @@
         <!-- Accreditation Logos Section - Full Width Glass Strip -->
         <div class="bg-white/90 backdrop-blur-md py-12 w-full mt-4 border-y border-white/40 shadow-inner">
             <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24">
-                <img src="https://static.wixstatic.com/media/37dc30_2e31b5f452224d11a58190341b1913ba~mv2.png" alt="NAFD Member" class="footer-logo">
-                <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_f8aa9d4558fe417689d9e5f87355d967~mv2.png&w=200&output=webp" alt="SAIF Member" class="footer-logo">
+                <a href="https://saif.org.uk/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_f8aa9d4558fe417689d9e5f87355d967~mv2.png&w=200&output=webp" alt="SAIF Member" class="footer-logo">
+                </a>
+                <a href="https://www.nafd.org.uk/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://static.wixstatic.com/media/37dc30_2e31b5f452224d11a58190341b1913ba~mv2.png" alt="NAFD Member" class="footer-logo">
+                </a>
                 <img src="https://images.weserv.nl/?url=static.wixstatic.com/media/37dc30_50c77cd97e58416ea95e0ca2d2844a5e~mv2.png&w=200&output=webp" alt="Accreditation" class="footer-logo">
             </div>
         </div>
