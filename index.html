@@ -3512,5 +3512,102 @@
         </div>
     </div>
 
+    <!-- Funeral Guide / Funeral Zone Reviews Widget -->
+    <script id="fz-reviews-script" data-brand-id="" data-home-id="" data-url="https://www.funeralguide.co.uk/">
+    !function() {
+        function attachWidgetCode() {
+            var compressedWidget = document.getElementById("fz-reviews-widget--compressed-wrapper")
+              , expandedWidget = document.getElementById("fz-reviews-widget--expanded");
+            function toggleExpandedWidget() {
+                if (!compressedWidget || !expandedWidget) return;
+                var activeWidget = expandedWidget.classList.contains("fz-show") ? expandedWidget : compressedWidget
+                  , inactiveWidget = expandedWidget.classList.contains("fz-hide") ? expandedWidget : compressedWidget;
+                inactiveWidget.classList.add("fz-show"),
+                inactiveWidget.classList.remove("fz-hide"),
+                activeWidget.classList.add("fz-hide"),
+                activeWidget.classList.remove("fz-show")
+            }
+            function showHideText(e) {
+                e.preventDefault(),
+                e.stopImmediatePropagation(),
+                "none" === window.getComputedStyle(e.target.previousElementSibling).display ? (e.target.textContent = "Show less",
+                e.target.previousElementSibling.style.display = "inline") : (e.target.textContent = "... Show more",
+                e.target.previousElementSibling.style.display = "none")
+            }
+            if (compressedWidget) {
+                compressedWidget.addEventListener("click", function(e) {
+                    e.preventDefault(),
+                    toggleExpandedWidget()
+                });
+            }
+            var closeBtn = document.getElementById("fz-reviews-widget-close");
+            if (closeBtn) {
+                closeBtn.addEventListener("click", function(e) {
+                    e.preventDefault(),
+                    toggleExpandedWidget()
+                });
+            }
+            document.querySelectorAll(".fz-reviews-widget__review-text .fz-show-more").forEach(function(showMoreButton) {
+                showMoreButton.addEventListener("click", showHideText)
+            }),
+            document.querySelectorAll(".fz-widget-btn").forEach(function(sortByButton) {
+                sortByButton.addEventListener("click", function(e) {
+                    if (e.preventDefault(),
+                    e.stopImmediatePropagation(),
+                    e.target.classList.contains("not--selected")) {
+                        e.target.classList.remove("not--selected"),
+                        e.target.classList.add("is--selected"),
+                        (elem = e.target,
+                        Array.from(elem.parentNode.children).filter(function(sibling) {
+                            return sibling !== elem
+                        })).forEach(function(button) {
+                            button.classList.remove("is--selected"),
+                            button.classList.add("not--selected")
+                        }),
+                        document.querySelectorAll(".fz-reviews-widget__reviews").forEach(function(reviewPanel) {
+                            reviewPanel.style.height = "0",
+                            reviewPanel.style.display = "none"
+                        });
+                        var selected = e.target.getAttribute("data-tab-label");
+                        document.querySelectorAll(".fz-reviews-widget__reviews." + selected).forEach(function(reviewPanel) {
+                            reviewPanel.style.height = "auto",
+                            reviewPanel.style.display = "block"
+                        })
+                    }
+                    var elem
+                })
+            })
+        }
+        window.NodeList && !NodeList.prototype.forEach && (NodeList.prototype.forEach = Array.prototype.forEach);
+        function initWidget() {
+            var scriptElement = document.getElementById("fz-reviews-script");
+            if (!scriptElement) return;
+            var brandId = scriptElement.getAttribute("data-brand-id")
+              , homeId = scriptElement.getAttribute("data-home-id")
+              , baseUrl = scriptElement.getAttribute("data-url") || "https://www.funeralguide.co.uk/";
+            if (!brandId) return;
+            if (baseUrl && !baseUrl.endsWith("/")) baseUrl += "/";
+            var url = baseUrl + "integrations/" + brandId + "/widget-expandable-reviews";
+            if (homeId && "null" !== homeId) {
+                url += "?home_id=" + homeId;
+            }
+            var oReq = new XMLHttpRequest;
+            oReq.addEventListener("loadend", function() {
+                if (200 === this.status && this.responseText) {
+                    document.body.insertAdjacentHTML("afterbegin", this.responseText);
+                    attachWidgetCode();
+                }
+            });
+            oReq.open("GET", url);
+            oReq.send();
+        }
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initWidget);
+        } else {
+            initWidget();
+        }
+    }();
+    </script>
+
 </body>
 </html>
