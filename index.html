@@ -825,6 +825,26 @@
             if (inner) inner.scrollTop = 0;
         }
 
+        // Modal Controls for Downloads & Forms Pop-up
+        function openDownloadsModal() {
+            const modal = document.getElementById('downloads-modal');
+            if (modal) {
+                resetModalScroll(modal);
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDownloadsModal() {
+            const modal = document.getElementById('downloads-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        }
+
         // Modal Controls for Glassmorphic About Us Pop-up
         function openAboutModal() {
             const modal = document.getElementById('about-modal');
@@ -1216,6 +1236,7 @@
                 closeNoticesModal();
                 closeHelpModal();
                 closeContactModal();
+                closeDownloadsModal();
             }
         });
     </script>
@@ -1253,6 +1274,7 @@
                             <button type="button" onclick="openPlansModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Funeral Plans</button>
                             <button type="button" onclick="openCasketsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Caskets and Urns</button>
                             <button type="button" onclick="openCoffinsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Coffins</button>
+                            <button type="button" onclick="openDownloadsModal()" class="w-full text-left px-4 py-2.5 text-slate-700 hover:bg-purple-100/50 hover:text-purple-800 transition-colors font-medium">Downloads & Forms</button>
                         </div>
                     </div>
 
@@ -1286,6 +1308,7 @@
                         <button type="button" onclick="openPlansModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Funeral Plans</button>
                         <button type="button" onclick="openCasketsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Caskets and Urns</button>
                         <button type="button" onclick="openCoffinsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Coffins</button>
+                        <button type="button" onclick="openDownloadsModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left py-1.5 hover:text-purple-700 font-medium">Downloads & Forms</button>
                     </div>
                 </div>
                 <button type="button" onclick="openNoticesModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left px-3 py-2 rounded-xl hover:bg-purple-100/50 hover:text-purple-700 font-medium">Funeral Notices & Donations</button>
@@ -1506,7 +1529,7 @@
                 <div>
                     <h4 class="font-bold text-lg mb-6 uppercase tracking-widest text-white">Information</h4>
                     <ul class="space-y-4 text-slate-300 text-sm">
-                        <li><button type="button" onclick="openContactModal()" class="hover:text-white transition-colors underline text-left">Downloads & Forms</button></li>
+                        <li><button type="button" onclick="openDownloadsModal()" class="hover:text-white transition-colors underline text-left">Downloads & Forms</button></li>
                         <li><button type="button" onclick="openContactModal()" class="hover:text-white transition-colors text-left">Privacy Policy</button></li>
                         <li class="pt-4 border-t border-slate-800">
                             <p class="text-[10px] uppercase tracking-tighter text-slate-400">Registration No. 08334736</p>
@@ -3340,6 +3363,121 @@
                 <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
                     Our selection of ashes caskets and urns is designed to provide a fitting final tribute. Many of our items can be further personalised or ordered in specific designs. Please speak with your Funeral Director to discuss any bespoke requirements or for guidance on selecting the most appropriate memorial for your loved one.
                 </p>
+            </div>
+
+            <!-- Modal Footer Note -->
+            <div class="text-center pt-4 pb-2 text-slate-500 text-xs font-medium">
+                <p>Cromer and District Independent Funeral Services LTD &bull; Available 24 hours a day</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Glassmorphic Pop-Up Modal: Downloads & Forms -->
+    <div id="downloads-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 md:p-8 overflow-y-auto" onclick="if(event.target === this) closeDownloadsModal()">
+        <div class="glass-modal relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 text-slate-800 custom-scrollbar my-auto">
+
+            <!-- Close Button -->
+            <button type="button" onclick="closeDownloadsModal()" class="sticky top-0 float-right z-30 w-10 h-10 -mt-2 -mr-2 sm:-mt-4 sm:-mr-4 flex items-center justify-center bg-white/80 hover:bg-purple-600 hover:text-white text-slate-700 rounded-full transition-all border border-white/80 shadow-md focus:outline-none" aria-label="Close Modal">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Header Section -->
+            <div class="max-w-4xl mx-auto text-center pt-2 mb-10">
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Downloads & Forms</h1>
+                <div class="w-24 h-1 accent-bg mx-auto mb-6 rounded-full"></div>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto italic serif">
+                    "Access and download our standardized price lists, options, disclosures, and terms of business."
+                </p>
+            </div>
+
+            <!-- Downloads Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-10 text-left">
+
+                <!-- 1. Standardised Price List -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between border border-white/80">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-700 flex-shrink-0">
+                                <i class="fas fa-file-pdf text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Standardised Price List</h3>
+                                <span class="text-xs font-semibold accent-text uppercase tracking-wider">Cromer 2026</span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            View our standardized price list for funeral services, outlining mandatory costs and standard options for 2026.
+                        </p>
+                    </div>
+                    <a href="Standardised Price list Cromer 2026 new logo.pdf" download target="_blank" class="w-full py-3.5 px-6 accent-bg text-white font-bold rounded-xl hover:bg-purple-700 transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+
+                <!-- 2. Additional Options Price List -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between border border-white/80">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-700 flex-shrink-0">
+                                <i class="fas fa-file-pdf text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Additional Options Price List</h3>
+                                <span class="text-xs font-semibold accent-text uppercase tracking-wider">2026 Options</span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Detailed pricing for additional products and services to personalize a funeral service.
+                        </p>
+                    </div>
+                    <a href="Additional Options Price List 2026 (1).pdf" download target="_blank" class="w-full py-3.5 px-6 accent-bg text-white font-bold rounded-xl hover:bg-purple-700 transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+
+                <!-- 3. Disclosure of Interests -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between border border-white/80">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-700 flex-shrink-0">
+                                <i class="fas fa-file-pdf text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Disclosure of Interests</h3>
+                                <span class="text-xs font-semibold accent-text uppercase tracking-wider">2025 Statement</span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Our official disclosure statement regarding business interests, ownership, and financial declarations.
+                        </p>
+                    </div>
+                    <a href="Disclosure of Interests 2025.pdf" download target="_blank" class="w-full py-3.5 px-6 accent-bg text-white font-bold rounded-xl hover:bg-purple-700 transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+
+                <!-- 4. Terms of Business -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between border border-white/80">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-700 flex-shrink-0">
+                                <i class="fas fa-file-pdf text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Terms of Business</h3>
+                                <span class="text-xs font-semibold accent-text uppercase tracking-wider">Terms & Conditions</span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Comprehensive information regarding payment terms, deposit requirements, and business policies.
+                        </p>
+                    </div>
+                    <a href="Terms of Business (1).pdf" download target="_blank" class="w-full py-3.5 px-6 accent-bg text-white font-bold rounded-xl hover:bg-purple-700 transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+
             </div>
 
             <!-- Modal Footer Note -->
