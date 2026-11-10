@@ -2496,9 +2496,7 @@
                         <div class="mb-6">
                             <span class="price-badge text-sm font-bold" data-cms-price="coffin-1">From £210.00</span>
                         </div>
-                        <p class="description-box text-sm text-slate-600" data-cms-desc="coffin-1">
-                            Built using high-quality lamboard and trimmed with single mouldings. A respectful and simple option for families.
-                        </p>
+                        <p class="description-box text-sm text-slate-600" data-cms-desc="coffin-1">Built using high-quality lamboard and trimmed with single mouldings. A respectful and traditional oak finish coffin fitted with electro-plated handles.</p>
                     </div>
                 </div>
 
@@ -3682,5 +3680,61 @@
         </div>
     </div>
 
+    <!-- CMS Live Sync Script (Ensures prices and descriptions update across all browser sessions and storage events) -->
+    <script>
+        (function() {
+            function applyCmsData(items) {
+                if (!Array.isArray(items)) return;
+                items.forEach(function(item) {
+                    if (!item || !item.id) return;
+
+                    // Update price badge
+                    if (item.price) {
+                        var priceEl = document.querySelector('[data-cms-price="' + item.id + '"]');
+                        if (priceEl && priceEl.textContent.trim() !== item.price.trim()) {
+                            priceEl.textContent = item.price;
+                        }
+                    }
+
+                    // Update description container if plain text paragraph
+                    if (item.description) {
+                        var descEl = document.querySelector('[data-cms-desc="' + item.id + '"]');
+                        if (descEl && descEl.tagName.toLowerCase() === 'p') {
+                            if (descEl.textContent.trim() !== item.description.trim()) {
+                                descEl.textContent = item.description;
+                            }
+                        }
+                    }
+                });
+            }
+
+            function syncFromStorage() {
+                try {
+                    var stored = localStorage.getItem('cd_funeral_cms_data');
+                    if (stored) {
+                        applyCmsData(JSON.parse(stored));
+                    }
+                } catch (e) {
+                    // ignore localStorage errors
+                }
+            }
+
+            // Sync on load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', syncFromStorage);
+            } else {
+                syncFromStorage();
+            }
+
+            // Sync live across tabs when admin saves
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'cd_funeral_cms_data' && e.newValue) {
+                    try {
+                        applyCmsData(JSON.parse(e.newValue));
+                    } catch (err) {}
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
