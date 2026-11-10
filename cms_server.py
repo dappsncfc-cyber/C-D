@@ -46,7 +46,7 @@ def format_desc_to_html(raw_desc, tag_type):
             escaped = html.escape(line)
             li_items.append(f"""                                    <li class="flex items-start gap-3">
                                         <i class="fas fa-check accent-text mt-1 text-sm"></i>
-                                        <span class="text-sm text-gray-200 leading-relaxed font-light">{escaped}</span>
+                                        <span class="text-sm text-slate-600 leading-relaxed font-light">{escaped}</span>
                                     </li>""")
         return '\n' + '\n'.join(li_items) + '\n                                '
     elif tag_type == 'div':
@@ -59,11 +59,11 @@ def format_desc_to_html(raw_desc, tag_type):
                 for bl in bullet_lines:
                     li_items.append(f"""                                        <li class="flex items-start gap-3">
                                             <i class="fas fa-check accent-text mt-1 text-sm"></i>
-                                            <span class="text-sm text-gray-200 leading-relaxed font-light">{html.escape(bl)}</span>
+                                            <span class="text-sm text-slate-600 leading-relaxed font-light">{html.escape(bl)}</span>
                                         </li>""")
                 out_blocks.append("""                                    <ul class="space-y-2 mb-3">\n""" + '\n'.join(li_items) + '\n                                    </ul>')
             else:
-                out_blocks.append(f"""                                    <p class="text-sm text-gray-200 leading-relaxed font-light mb-3">{html.escape(p)}</p>""")
+                out_blocks.append(f"""                                    <p class="text-sm text-slate-600 leading-relaxed font-light mb-3">{html.escape(p)}</p>""")
         return '\n' + '\n'.join(out_blocks) + '\n                                '
     else:
         # Standard <p class="description-box">
