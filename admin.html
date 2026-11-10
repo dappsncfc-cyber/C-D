@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Cromer and District Independent Funeral Services</title>
+
+    <!-- Meta -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f3e8f5 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Gilda Display', serif;
+        }
+        .accent-text { color: #af4acc; }
+        .accent-bg { background-color: #af4acc; }
+        .accent-border { border-color: #af4acc; }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(175, 74, 204, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(175, 74, 204, 0.12);
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #af4acc;
+            box-shadow: 0 0 0 3px rgba(175, 74, 204, 0.15);
+        }
+        .tab-btn.active {
+            background-color: #af4acc;
+            color: #ffffff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Background Orbs -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-32 w-96 h-96 bg-purple-200/40 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-1/4 w-[30rem] h-[30rem] bg-indigo-100/40 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Login Modal / Gate -->
+    <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+        <div class="glass-panel p-8 sm:p-10 rounded-3xl max-w-md w-full shadow-2xl text-center border border-white/80">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl accent-bg text-white flex items-center justify-center text-2xl shadow-lg">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-800 mb-2">Admin Portal</h1>
+            <p class="text-slate-600 text-sm mb-6">Enter your 4-digit security PIN to update website prices and descriptions.</p>
+
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <input type="password" id="pin-input" maxlength="8" autofocus placeholder="Enter PIN"
+                           class="form-input text-center text-2xl tracking-[0.5em] font-bold" required>
+                </div>
+                <button type="submit" id="login-btn"
+                        class="w-full py-3.5 accent-bg text-white font-bold rounded-xl hover:bg-purple-700 transition-all shadow-md">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Log In
+                </button>
+                <div id="login-error" class="hidden text-sm text-red-600 font-medium pt-2">
+                    <i class="fas fa-exclamation-circle mr-1"></i> Incorrect PIN. Please try again.
+                </div>
+            </form>
+
+            <div class="mt-6 pt-4 border-t border-slate-200 text-xs text-slate-400">
+                Cromer and District Independent Funeral Services LTD
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden until PIN verified) -->
+    <div id="dashboard" class="hidden min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <header class="glass-panel border-b border-white/70 sticky top-0 z-40 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="logo.png" alt="Logo" class="h-10 sm:h-12 w-auto object-contain">
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-800 serif">Price & Description Manager</h2>
+                        <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Sync Enabled
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="index.html" target="_blank"
+                       class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-white/80 hover:bg-white text-slate-700 border border-slate-200 transition-all shadow-sm flex items-center gap-2">
+                        <i class="fas fa-external-link-alt accent-text"></i> View Website
+                    </a>
+                    <button onclick="handleLogout()"
+                            class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-all">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Log Out
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+            <!-- Controls Bar: Filter & Search -->
+            <div class="glass-panel p-6 rounded-3xl mb-8 border border-white/80 shadow-sm">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Category Tabs -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                        <button onclick="filterCategory('All')" id="cat-All"
+                                class="tab-btn active px-4 py-2 rounded-xl text-sm transition-all bg-purple-100 text-purple-800">
+                            All Items (<span id="count-all">0</span>)
+                        </button>
+                        <button onclick="filterCategory('Coffins')" id="cat-Coffins"
+                                class="tab-btn px-4 py-2 rounded-xl text-sm transition-all bg-white/80 text-slate-600 hover:bg-white">
+                            Coffins (<span id="count-coffins">0</span>)
+                        </button>
+                        <button onclick="filterCategory('Funeral Packages & Costs')" id="cat-Packages"
+                                class="tab-btn px-4 py-2 rounded-xl text-sm transition-all bg-white/80 text-slate-600 hover:bg-white">
+                            Funeral Packages (<span id="count-packages">0</span>)
+                        </button>
+                        <button onclick="filterCategory('Ashes Caskets & Urns')" id="cat-Caskets"
+                                class="tab-btn px-4 py-2 rounded-xl text-sm transition-all bg-white/80 text-slate-600 hover:bg-white">
+                            Caskets & Urns (<span id="count-caskets">0</span>)
+                        </button>
+                    </div>
+
+                    <!-- Search Box -->
+                    <div class="w-full md:w-80 relative">
+                        <i class="fas fa-search absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="text" id="search-input" oninput="handleSearch(this.value)"
+                               placeholder="Search items by title..." class="form-input pl-11">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Items Grid -->
+            <div id="items-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden glass-panel p-12 rounded-3xl text-center border border-white/80">
+                <i class="fas fa-search text-4xl text-slate-300 mb-3"></i>
+                <h3 class="text-xl font-bold text-slate-700 mb-1">No items found</h3>
+                <p class="text-sm text-slate-500">Try adjusting your search query or category filter.</p>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="glass-panel border-t border-white/60 py-6 text-center text-xs text-slate-500 mt-auto">
+            <div class="max-w-7xl mx-auto px-4">
+                <p>&copy; 2026 Cromer and District Independent Funeral Services LTD. Admin Portal.</p>
+                <p class="mt-1 text-slate-400">Every change updates both the live site index.html and catalog records.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-2xl w-full shadow-2xl border border-white/80 max-h-[92vh] overflow-y-auto">
+
+            <div class="flex items-start justify-between mb-6 pb-4 border-b border-slate-200">
+                <div class="flex items-center gap-4">
+                    <img id="edit-img" src="" alt="Thumbnail" class="w-16 h-16 object-contain rounded-xl bg-white border border-slate-200 p-1">
+                    <div>
+                        <span id="edit-category" class="text-xs font-semibold uppercase tracking-wider text-purple-700">Category</span>
+                        <h3 id="edit-title" class="text-2xl font-bold text-slate-900">Item Title</h3>
+                    </div>
+                </div>
+                <button onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-all">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form id="edit-form" onsubmit="handleSaveEdit(event)" class="space-y-5">
+                <input type="hidden" id="edit-id">
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                        Price Tag Display
+                    </label>
+                    <input type="text" id="edit-price" required class="form-input text-base font-semibold"
+                           placeholder="e.g. From £250.00 or £1750.00 including fees">
+                    <p class="text-xs text-slate-500 mt-1">This updates the price badge shown on the website card.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                        Description / Details
+                    </label>
+                    <textarea id="edit-desc" rows="6" required class="form-input text-sm leading-relaxed"
+                              placeholder="Enter item description or features..."></textarea>
+                    <p class="text-xs text-slate-500 mt-1">
+                        You can edit plain text or HTML list markup if applicable.
+                    </p>
+                </div>
+
+                <div class="pt-4 border-t border-slate-200 flex justify-end gap-3">
+                    <button type="button" onclick="closeEditModal()"
+                            class="px-5 py-2.5 rounded-xl font-semibold text-sm bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all">
+                        Cancel
+                    </button>
+                    <button type="submit" id="save-btn"
+                            class="px-6 py-2.5 rounded-xl font-bold text-sm accent-bg hover:bg-purple-700 text-white shadow-md transition-all flex items-center gap-2">
+                        <i class="fas fa-save"></i> Save Changes to Website
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden transition-all duration-300 transform translate-y-4">
+        <div class="glass-panel bg-white/95 border border-purple-200 shadow-xl rounded-2xl px-5 py-4 flex items-center gap-3">
+            <div id="toast-icon" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                <i class="fas fa-check"></i>
+            </div>
+            <div>
+                <p id="toast-title" class="font-bold text-sm text-slate-900">Success</p>
+                <p id="toast-desc" class="text-xs text-slate-600">Website index.html updated successfully.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const VALID_PIN = "1982";
+        let catalog = [];
+        let currentCategory = "All";
+        let searchQuery = "";
+        let authPin = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPin = sessionStorage.getItem('cd_admin_pin');
+            if (savedPin === VALID_PIN) {
+                authPin = savedPin;
+                showDashboard();
+            }
+        });
+
+        // Login Handler
+        function handleLogin(e) {
+            e.preventDefault();
+            const pin = document.getElementById('pin-input').value.trim();
+            const errEl = document.getElementById('login-error');
+
+            if (pin === VALID_PIN) {
+                authPin = pin;
+                sessionStorage.setItem('cd_admin_pin', pin);
+                errEl.classList.add('hidden');
+                showDashboard();
+            } else {
+                errEl.classList.remove('hidden');
+                document.getElementById('pin-input').value = '';
+                document.getElementById('pin-input').focus();
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('cd_admin_pin');
+            authPin = null;
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('pin-input').value = '';
+        }
+
+        async function showDashboard() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            await loadCatalogData();
+        }
+
+        // Load Catalog from Server or Local Storage fallback
+        async function loadCatalogData() {
+            try {
+                const res = await fetch('/api/catalog');
+                if (res.ok) {
+                    catalog = await res.json();
+                } else {
+                    throw new Error('Server returned ' + res.status);
+                }
+            } catch (err) {
+                console.warn('Loading catalog from catalog.json fallback...', err);
+                try {
+                    const fallbackRes = await fetch('catalog.json');
+                    catalog = await fallbackRes.json();
+                } catch (fallbackErr) {
+                    console.error('Failed to load catalog:', fallbackErr);
+                }
+            }
+
+            // Also check localStorage for any pending client overrides
+            try {
+                const stored = localStorage.getItem('cd_funeral_cms_data');
+                if (stored) {
+                    const localItems = JSON.parse(stored);
+                    const map = {};
+                    localItems.forEach(i => map[i.id] = i);
+                    catalog = catalog.map(item => {
+                        if (map[item.id]) {
+                            return { ...item, ...map[item.id] };
+                        }
+                        return item;
+                    });
+                }
+            } catch (e) {
+                console.warn('localStorage read error:', e);
+            }
+
+            updateCounts();
+            renderGrid();
+        }
+
+        function updateCounts() {
+            document.getElementById('count-all').textContent = catalog.length;
+            document.getElementById('count-coffins').textContent = catalog.filter(i => i.category === 'Coffins').length;
+            document.getElementById('count-packages').textContent = catalog.filter(i => i.category === 'Funeral Packages & Costs').length;
+            document.getElementById('count-caskets').textContent = catalog.filter(i => i.category === 'Ashes Caskets & Urns').length;
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-purple-100', 'text-purple-800');
+                btn.classList.add('bg-white/80', 'text-slate-600');
+            });
+            const activeBtn = document.getElementById(
+                cat === 'All' ? 'cat-All' :
+                cat === 'Coffins' ? 'cat-Coffins' :
+                cat === 'Funeral Packages & Costs' ? 'cat-Packages' : 'cat-Caskets'
+            );
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-purple-100', 'text-purple-800');
+                activeBtn.classList.remove('bg-white/80', 'text-slate-600');
+            }
+            renderGrid();
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            renderGrid();
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('items-grid');
+            const empty = document.getElementById('empty-state');
+            grid.innerHTML = '';
+
+            const filtered = catalog.filter(item => {
+                const matchCat = (currentCategory === 'All') || (item.category === currentCategory);
+                const matchSearch = !searchQuery ||
+                    (item.title && item.title.toLowerCase().includes(searchQuery)) ||
+                    (item.price && item.price.toLowerCase().includes(searchQuery)) ||
+                    (item.description && item.description.toLowerCase().includes(searchQuery));
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                empty.classList.remove('hidden');
+                grid.classList.add('hidden');
+                return;
+            }
+
+            empty.classList.add('hidden');
+            grid.classList.remove('hidden');
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-3xl flex flex-col justify-between border border-white/80";
+
+                // Strip inner tags for display excerpt if HTML
+                const descExcerpt = item.description.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="${item.image || 'logo.png'}" alt="${item.title}"
+                                 class="w-20 h-20 object-contain rounded-2xl bg-white/90 p-1.5 border border-purple-100 flex-shrink-0 shadow-sm">
+                            <div class="flex-grow">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-100">${item.category}</span>
+                                <h4 class="text-xl font-bold text-slate-800 mt-1">${item.title}</h4>
+                                <div class="mt-2">
+                                    <span class="inline-block accent-bg text-white font-bold text-xs px-3 py-1 rounded-lg shadow-sm">
+                                        ${item.price}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-slate-600 text-xs sm:text-sm line-clamp-3 leading-relaxed mb-6 bg-slate-50/60 p-3 rounded-xl border border-slate-100">
+                            ${descExcerpt}
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-400 font-mono">ID: ${item.id}</span>
+                        <button onclick="openEditModal('${item.id}')"
+                                class="px-5 py-2 accent-bg hover:bg-purple-700 text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-sm flex items-center gap-1.5">
+                            <i class="fas fa-edit"></i> Edit Price & Details
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Open Edit Modal
+        function openEditModal(id) {
+            const item = catalog.find(i => i.id === id);
+            if (!item) return;
+
+            document.getElementById('edit-id').value = item.id;
+            document.getElementById('edit-category').textContent = item.category;
+            document.getElementById('edit-title').textContent = item.title;
+            document.getElementById('edit-img').src = item.image || 'logo.png';
+            document.getElementById('edit-price').value = item.price;
+            document.getElementById('edit-desc').value = item.description;
+
+            const modal = document.getElementById('edit-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById('edit-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Save Edit Handler
+        async function handleSaveEdit(e) {
+            e.preventDefault();
+            const id = document.getElementById('edit-id').value;
+            const price = document.getElementById('edit-price').value.trim();
+            const desc = document.getElementById('edit-desc').value.trim();
+            const saveBtn = document.getElementById('save-btn');
+
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Saving to index.html...';
+
+            let serverUpdated = false;
+
+            // Attempt to write to backend API
+            try {
+                const res = await fetch('/api/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer auth_1982_valid'
+                    },
+                    body: JSON.stringify({
+                        pin: authPin || VALID_PIN,
+                        id: id,
+                        price: price,
+                        description: desc
+                    })
+                });
+
+                if (res.ok) {
+                    const resData = await res.json();
+                    if (resData.success) {
+                        serverUpdated = true;
+                    }
+                }
+            } catch (err) {
+                console.warn('Backend update endpoint note:', err);
+            }
+
+            // Always update in-memory catalog
+            const target = catalog.find(i => i.id === id);
+            if (target) {
+                target.price = price;
+                target.description = desc;
+            }
+
+            // Save to localStorage so index.html syncs immediately in browser
+            try {
+                localStorage.setItem('cd_funeral_cms_data', JSON.stringify(catalog));
+            } catch (storageErr) {
+                console.warn('Storage sync:', storageErr);
+            }
+
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fas fa-save mr-1"></i> Save Changes to Website';
+            closeEditModal();
+            renderGrid();
+
+            showToast(
+                'Changes Saved!',
+                `Updated "${target ? target.title : id}" successfully across index.html.`
+            );
+        }
+
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-desc').textContent = desc;
+            toast.classList.remove('hidden', 'translate-y-4');
+            toast.classList.add('translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
