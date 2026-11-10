@@ -12,6 +12,7 @@ import http.server
 import json
 import os
 import re
+import socketserver
 import sys
 import urllib.parse
 
@@ -127,6 +128,9 @@ def update_index_html(item_id, new_price=None, new_desc=None):
             f.write(content)
 
     return changed
+
+class ThreadingHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    daemon_threads = True
 
 class CMSRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -254,7 +258,7 @@ class CMSRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 def run_server():
     server_address = ('', PORT)
-    httpd = http.server.HTTPServer(server_address, CMSRequestHandler)
+    httpd = ThreadingHTTPServer(server_address, CMSRequestHandler)
     print(f"Cromer & District CMS Server running on http://localhost:{PORT}")
     try:
         httpd.serve_forever()
